@@ -8,9 +8,9 @@ model2392 = Model("gait2392_simbody.osim");
 % methodsview(model2392)
 %%
 % Define the path to the file
-path4grf = 'subject01_walk1_grf.mot';
+path4mot = 'subject01_walk1_grf.mot';
 % Use the standard TimeSeriesTable to read the data file.
-opensimTable = TimeSeriesTable(path4grf);
+opensimTable = TimeSeriesTable(filepath);
 % Use the OpenSim Utility function, osimTable2Struct to
 % convert the OpenSim table into a Matlab Struct for ease of use.
 matlabStruct_grfData = osimTableToStruct(opensimTable);
