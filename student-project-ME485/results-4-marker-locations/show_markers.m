@@ -80,8 +80,9 @@ for k = 1:11
     y = bf(2) + cosd(bf(5))*py;
     z = bf(3) + cosd(bf(6))*pz;
     fprintf('xyz coordinates for marker %i = (%.3g m, %.3g m, %.3g m)\n', k, x, y, z)
-    scatter3(x, y, z, 'MarkerFaceColor', mcol{f});
+    scatter3(x, y, z, 'MarkerFaceColor', mcol{f}, 'DisplayName', frames{k});
 end
+legend('show');
 
 
 hold off;
