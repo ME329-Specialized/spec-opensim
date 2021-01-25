@@ -1,4 +1,9 @@
+clear all;
+clc;
+
+% preprocessing joint data from ME 485 model
 degrees_mot = importdata('cyclingleg_states_degrees.mot', '\t');
+
 % a struct with fields data, textdata, and colheaders
 mot_data = degrees_mot.data;
 mot_text = degrees_mot.textdata;
@@ -14,11 +19,12 @@ knee_col = find(strcmp(mot_headers, 'knee_r/knee_angle_r/value'));
 ankle_col = find(strcmp(mot_headers, 'ankle_r/ankle_angle_r/value'));
 % accesses joint angles from mot_data
 crank_angle = mot_data(:,crank_col);
+
 hip_r_angle = mot_data(:,hip_col);
 knee_r_angle = mot_data(:,knee_col);
 ankle_r_angle = mot_data(:,ankle_col);
-%%
-% plotting
+
+%% plotting
 if ishandle(1)
     close(figure(1))
 end
