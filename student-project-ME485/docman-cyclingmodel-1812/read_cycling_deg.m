@@ -1,12 +1,3 @@
-% % move to the correct directory
-% degrees_dir = dir('**/cyclingleg_states_degrees*.mot');
-% cd(degrees_dir.folder);
-% move to the correct directory
-while ~endsWith(pwd, 'docman-cyclingmodel-1812')
-    cd ..
-    spec_dir = dir('**/cyclingleg_states_degrees*.mot');
-    cd(spec_dir.folder);
-end
 degrees_mot = importdata('cyclingleg_states_degrees.mot', '\t');
 % a struct with fields data, textdata, and colheaders
 mot_data = degrees_mot.data;
@@ -65,13 +56,19 @@ curr_path = pwd;
 
 excel = 'Hip, Knee, Ankle Joint Angles.xlsx';
 header_1 = {'Time', 'Hip', 'Knee', 'Ankle'};
-writecell(header_1, excel,'Sheet','Joint Angles',...
+writecell(header_1, excel,'Sheet','Joint Angles in Time',...
     'WriteMode','overwritesheet','AutoFitWidth', 1);
 writecell(num2cell([time, hip_r_angle, knee_r_angle, ankle_r_angle])...
-    ,excel,'Sheet','Joint Angles','WriteMode','append')
+    ,excel,'Sheet','Joint Angles in Time','WriteMode','append')
 
-header_2 = {'Value', 'Hip', 'Knee', 'Ankle'};
-writecell(header_2, excel,'Sheet','Min-Mean-Max Values',...
+header_2 = {'Crank Angle', 'Hip', 'Knee', 'Ankle'};
+writecell(header_2, excel,'Sheet','Joint Angles in Crank Angle',...
+    'WriteMode','overwritesheet','AutoFitWidth', 1);
+writecell(num2cell([crank_angle, hip_r_angle, knee_r_angle, ankle_r_angle])...
+    ,excel,'Sheet','Joint Angles in Crank Angle','WriteMode','append')
+
+header_3 = {'Value', 'Hip', 'Knee', 'Ankle'};
+writecell(header_3, excel,'Sheet','Min-Mean-Max Values',...
     'WriteMode','overwritesheet','AutoFitWidth', 1);
 maxs = {'Max', max(hip_r_angle), max(knee_r_angle), max(ankle_r_angle)};
 means = {'Mean', mean(hip_r_angle), mean(knee_r_angle), mean(ankle_r_angle)};
