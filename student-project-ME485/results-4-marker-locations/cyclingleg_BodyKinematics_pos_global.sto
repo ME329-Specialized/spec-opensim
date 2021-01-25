@@ -1,0 +1,20 @@
+Positions
+version=1
+nRows=1
+nColumns=70
+inDegrees=no
+
+This file contains the kinematics (positions and orientations,
+velocities and angular velocities, or accelerations and angular accelerations)
+of the centers of mass of the body segments in model cyclingleg.
+
+Body segment orientations are described using body-fixed X-Y-Z Euler angles.
+
+Angular velocities and accelerations are given about the body-local axes.
+
+Units are S.I. units (seconds, meters, Newtons, ...)
+Angles are in degrees.
+
+endheader
+time	crank_X	crank_Y	crank_Z	crank_Ox	crank_Oy	crank_Oz	bottom_bracket_X	bottom_bracket_Y	bottom_bracket_Z	bottom_bracket_Ox	bottom_bracket_Oy	bottom_bracket_Oz	crank_arm_X	crank_arm_Y	crank_arm_Z	crank_arm_Ox	crank_arm_Oy	crank_arm_Oz	pedal_r_X	pedal_r_Y	pedal_r_Z	pedal_r_Ox	pedal_r_Oy	pedal_r_Oz	pelvis_X	pelvis_Y	pelvis_Z	pelvis_Ox	pelvis_Oy	pelvis_Oz	femur_r_X	femur_r_Y	femur_r_Z	femur_r_Ox	femur_r_Oy	femur_r_Oz	tibia_r_X	tibia_r_Y	tibia_r_Z	tibia_r_Ox	tibia_r_Oy	tibia_r_Oz	patella_r_X	patella_r_Y	patella_r_Z	patella_r_Ox	patella_r_Oy	patella_r_Oz	talus_r_X	talus_r_Y	talus_r_Z	talus_r_Ox	talus_r_Oy	talus_r_Oz	calcn_r_X	calcn_r_Y	calcn_r_Z	calcn_r_Ox	calcn_r_Oy	calcn_r_Oz	toes_r_X	toes_r_Y	toes_r_Z	toes_r_Ox	toes_r_Oy	toes_r_Oz	center_of_mass_X	center_of_mass_Y	center_of_mass_Z
+      0.00000000	      0.00000000	      0.00000000	     -0.10000000	     -0.00000000	      0.00000000	    -14.17733704	      0.00000000	      0.00000000	     -0.17000000	     90.01203621	    -14.17733674	      0.00294796	      0.02143084	      0.08483495	     -0.09500000	     -0.00000000	      0.00000000	    -14.17733704	      0.04286168	      0.16966990	     -0.05500000	     -0.00000000	      0.00000000	     -4.14666730	     -0.29995120	      0.80000000	     -0.12000000	     -0.00000000	      0.00000000	     -0.00000000	     -0.10227682	      0.70763473	     -0.04690178	      4.12643582	      3.62794302	     83.03703528	      0.08151482	      0.49184347	     -0.07415344	      4.12643582	      3.62794302	    -30.99772747	      0.19611560	      0.63959822	     -0.07077879	      4.12643582	      3.62794302	    -13.34829764	     -0.05900666	      0.25745218	     -0.08213070	     -0.00000000	      0.00000000	     -4.14666730	     -0.02008904	      0.23219343	     -0.07200000	     -0.00000000	      0.00000000	     -4.14666730	      0.09474331	      0.19709786	     -0.08945778	     -0.00000000	      0.00000000	     -4.14666730	     -0.13905930	      0.65327903	     -0.08537384
