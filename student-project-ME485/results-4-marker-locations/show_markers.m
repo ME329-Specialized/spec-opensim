@@ -37,27 +37,24 @@ first_Ox = find(strcmp(bk_headers, 'pelvis_Ox'));
 first_Oy = find(strcmp(bk_headers, 'pelvis_Oy'));
 first_Oz = find(strcmp(bk_headers, 'pelvis_Oz'));
 
+% position data w/ respect to ground
 xdata = bk_data(first_x:6:end);
 ydata = bk_data(first_y:6:end);
 zdata = bk_data(first_z:6:end);
+% orientation data w/ respect to ground frame (I think...)
 Oxdata = bk_data(first_Ox:6:end);
 Oydata = bk_data(first_Oy:6:end);
 Ozdata = bk_data(first_Oz:6:end);
 
-% pelvis = [xdata(1) ydata(1) zdata(1);
-%     Oxdata(1) Oydata(1) Ozdata(1)];
-% femur = [xdata(2) ydata(2) zdata(2);
-%     Oxdata(2) Oydata(2) Ozdata(2)];
-% tibia = [xdata(3) ydata(3) zdata(3);
-%     Oxdata(3) Oydata(3) Ozdata(3)];
-% calcn = [xdata(4) ydata(4) zdata(4);
-%     Oxdata(4) Oydata(4) Ozdata(4)];
-% pedal = [xdata(5) ydata(5) zdata(5);
-%     Oxdata(5) Oydata(5) Ozdata(5)];
 %% Plot to visualize
 figure(1); clf; hold on; box on; grid on;
 mcol = {'blue', 'green', 'red', 'magenta'};
 f = 1;
+% Rotation matrix between OpenSim and Matlab
+% just a 90 deg rotation about the x-axis
+R_M_O = [1        0        0;
+         0 cosd(90) -sind(90);
+         0 sind(90) cosd(90)];
 for k = 1:11
     px = locs(k,1);
     py = locs(k,2);
@@ -76,13 +73,36 @@ for k = 1:11
     end
     bf = [xdata(f) ydata(f) zdata(f);
     Oxdata(f) Oydata(f) Ozdata(f)];
-    x = bf(1) + cosd(bf(4))*px;
-    y = bf(2) + cosd(bf(5))*py;
-    z = bf(3) + cosd(bf(6))*pz;
-    fprintf('xyz coordinates for marker %i = (%.3g m, %.3g m, %.3g m)\n', k, x, y, z)
-    scatter3(x, y, z, 'MarkerFaceColor', mcol{f}, 'DisplayName', frames{k});
+    % need to get the rotation matrix between the body frame and the ground
+    % in OpenSim
+    R_x = [1           0            0;
+           0 cosd(bf(4)) -sind(bf(4));
+           0 sind(bf(4)) cosd(bf(4))]; 
+    R_y = [sind(bf(5)) 0  cosd(bf(5));
+           0           1  0;
+           cosd(bf(5)) 0 -sind(bf(5))];
+    R_z = [cosd(bf(6)) -sind(bf(6)) 0;
+           sind(bf(6))  cosd(bf(6)) 0;
+           0            0           1];
+    R_BF_O = R_x*R_y*R_z;
+    % should be the full rotation matrix for the current body frame
+    R_M_BF = R_M_O * (R_BF_O)^-1;
+    fprintf(['Full Rotation Matrix of BF %s = \n',...
+        '[%.3g, %.3g, %.3g]\n',...
+        '[%.3g, %.3g, %.3g]\n',...
+        '[%.3g, %.3g, %.3g]\n'], frames{k}, R_M_BF)
+
+    r_OpenSim = bf(1:3)'; % position vector of the current body frame origin
+    r_BF = [px; py; pz];
+    
+    fprintf('xyz coordinates for marker %i = (%.3g m, %.3g m, %.3g m)\n\n', k, x, y, z)
+    scatter3(x, y, z,'MarkerEdgeColor', mcol{f},'MarkerFaceColor', mcol{f},...
+        'DisplayName', frames{k});
 end
-legend('show');
+legend('show','AutoUpdate','off');
+plot3([0 5], [0 0], [0 0], 'r', 'DisplayName', 'x-axis')
+plot3([0 0], [0 1], [0 0], 'g', 'DisplayName', 'y-axis')
+plot3([0 0], [0 0], [0 1], 'b', 'DisplayName', 'z-axis')
 
 
 hold off;
