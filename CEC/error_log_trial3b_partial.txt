@@ -1,0 +1,218 @@
+Loading desired kinematics from file C:\Users\cclan\Documents\OpenSim\4.1\Models\485cyclingleg\CEC\CMC\cyclingleg_Kinematics_q.sto ...
+Storage: read data file =C:\Users\cclan\Documents\OpenSim\4.1\Models\485cyclingleg\CEC\CMC\cyclingleg_Kinematics_q.sto (nr=1191 nc=21)
+
+
+Note- not filtering the desired kinematics.
+
+MODEL: cyclingleg
+
+numStates = 48
+numCoordinates = 20
+numSpeeds = 20
+numActuators = 19
+numBodies = 11
+numConstraints = 6
+numProbes = 0
+
+ANALYSES (total: 3)
+analysis[0] = MetabolicsReporter
+analysis[1] = Un-named analysis.
+analysis[2] = Un-named analysis.
+
+BODIES (total: 11)
+body[0] = crank. mass: 0.5
+              moments of inertia:  ~[0.01,0.01,0.05]
+              products of inertia: ~[0,0,0]
+body[1] = bottom_bracket. mass: 0.25
+              moments of inertia:  ~[0.01,0.01,0.05]
+              products of inertia: ~[0,0,0]
+body[2] = crank_arm. mass: 0.2
+              moments of inertia:  ~[0.01,0.01,0.05]
+              products of inertia: ~[0,0,0]
+body[3] = pedal_r. mass: 0.2
+              moments of inertia:  ~[0.01,0.01,0.05]
+              products of inertia: ~[0,0,0]
+body[4] = pelvis. mass: 10.7538
+              moments of inertia:  ~[0.1027,0.0870155,0.0578439]
+              products of inertia: ~[0,0,0]
+body[5] = femur_r. mass: 8.54927
+              moments of inertia:  ~[0.169564,0.0444489,0.178809]
+              products of inertia: ~[0,0,0]
+body[6] = tibia_r. mass: 4.67404
+              moments of inertia:  ~[0.0802351,0.00811903,0.0813495]
+              products of inertia: ~[0,0,0]
+body[7] = patella_r. mass: 0.0919138
+              moments of inertia:  ~[0.00110296,0.00110296,0.00110296]
+              products of inertia: ~[0,0,0]
+body[8] = talus_r. mass: 0.126069
+              moments of inertia:  ~[0.00202166,0.00202166,0.00202166]
+              products of inertia: ~[0,0,0]
+body[9] = calcn_r. mass: 1.07225
+              moments of inertia:  ~[0.00090462,0.00361848,0.00361848]
+              products of inertia: ~[0,0,0]
+body[10] = toes_r. mass: 0.186142
+              moments of inertia:  ~[0,0,0.00090462]
+              products of inertia: ~[0,0,0]
+
+JOINTS (total: 11)
+joint[0] = bb. parent: ground_offset, child: crank
+joint[1] = bottombracket. parent: crank_offset, child: bottom_bracket
+joint[2] = crankarm. parent: crank_offset, child: crank_arm
+joint[3] = spindle. parent: crank_arm_offset, child: pedal_r
+joint[4] = ground_pelvis. parent: ground_offset, child: pelvis
+joint[5] = hip_r. parent: pelvis_offset, child: femur_r
+joint[6] = knee_r. parent: femur_r, child: tibia_r
+joint[7] = tib_pat_r. parent: tibia_r, child: patella_r
+joint[8] = ankle_r. parent: tibia_r_offset, child: talus_r
+joint[9] = subtalar_r. parent: talus_r_offset, child: calcn_r
+joint[10] = mtp_r. parent: calcn_r_offset, child: toes_r
+
+ACTUATORS (total: 19)
+actuator[0] = bifemlh_r
+actuator[1] = bifemsh_r
+actuator[2] = glut_max2_r
+actuator[3] = vas_int_r
+actuator[4] = FX
+actuator[5] = FY
+actuator[6] = MZ
+actuator[7] = crank_angle
+actuator[8] = pelvis_tilt
+actuator[9] = pelvis_list
+actuator[10] = pelvis_rotation
+actuator[11] = pelvis_tx
+actuator[12] = pelvis_ty
+actuator[13] = pelvis_tz
+actuator[14] = hip_angle_r
+actuator[15] = hip_adduction_r
+actuator[16] = hip_rotation_r
+actuator[17] = knee_angle_r
+actuator[18] = mtp_angle_r
+
+STATES (total: 48)
+y[0] = /jointset/bb/crank_angle/value
+y[1] = /jointset/bb/crank_angle/speed
+y[2] = /jointset/spindle/pedal_angle_r/value
+y[3] = /jointset/spindle/pedal_angle_r/speed
+y[4] = /jointset/ground_pelvis/pelvis_tilt/value
+y[5] = /jointset/ground_pelvis/pelvis_tilt/speed
+y[6] = /jointset/ground_pelvis/pelvis_list/value
+y[7] = /jointset/ground_pelvis/pelvis_list/speed
+y[8] = /jointset/ground_pelvis/pelvis_rotation/value
+y[9] = /jointset/ground_pelvis/pelvis_rotation/speed
+y[10] = /jointset/ground_pelvis/pelvis_tx/value
+y[11] = /jointset/ground_pelvis/pelvis_tx/speed
+y[12] = /jointset/ground_pelvis/pelvis_ty/value
+y[13] = /jointset/ground_pelvis/pelvis_ty/speed
+y[14] = /jointset/ground_pelvis/pelvis_tz/value
+y[15] = /jointset/ground_pelvis/pelvis_tz/speed
+y[16] = /jointset/hip_r/hip_angle_r/value
+y[17] = /jointset/hip_r/hip_angle_r/speed
+y[18] = /jointset/hip_r/hip_adduction_r/value
+y[19] = /jointset/hip_r/hip_adduction_r/speed
+y[20] = /jointset/hip_r/hip_rotation_r/value
+y[21] = /jointset/hip_r/hip_rotation_r/speed
+y[22] = /jointset/knee_r/knee_angle_r/value
+y[23] = /jointset/knee_r/knee_angle_r/speed
+y[24] = /jointset/knee_r/tib_tx_r/value
+y[25] = /jointset/knee_r/tib_tx_r/speed
+y[26] = /jointset/knee_r/tib_ty_r/value
+y[27] = /jointset/knee_r/tib_ty_r/speed
+y[28] = /jointset/tib_pat_r/pat_angle_r/value
+y[29] = /jointset/tib_pat_r/pat_angle_r/speed
+y[30] = /jointset/tib_pat_r/pat_tx_r/value
+y[31] = /jointset/tib_pat_r/pat_tx_r/speed
+y[32] = /jointset/tib_pat_r/pat_ty_r/value
+y[33] = /jointset/tib_pat_r/pat_ty_r/speed
+y[34] = /jointset/ankle_r/ankle_angle_r/value
+y[35] = /jointset/ankle_r/ankle_angle_r/speed
+y[36] = /jointset/subtalar_r/subtalar_angle_r/value
+y[37] = /jointset/subtalar_r/subtalar_angle_r/speed
+y[38] = /jointset/mtp_r/mtp_angle_r/value
+y[39] = /jointset/mtp_r/mtp_angle_r/speed
+y[40] = /forceset/bifemlh_r/activation
+y[41] = /forceset/bifemlh_r/fiber_length
+y[42] = /forceset/bifemsh_r/activation
+y[43] = /forceset/bifemsh_r/fiber_length
+y[44] = /forceset/glut_max2_r/activation
+y[45] = /forceset/glut_max2_r/fiber_length
+y[46] = /forceset/vas_int_r/activation
+y[47] = /forceset/vas_int_r/fiber_length
+Coordinate.setValue: WARN- coordinate subtalar_angle_r is locked. Unable to change its value.
+
+Constructing function set for tracking desired kinematics...
+
+No Actuation analysis found in analysis set -- adding one
+No Kinematics analysis found in analysis set -- adding one
+Using the generalized coordinates specified in C:\Users\cclan\Documents\OpenSim\4.1\Models\485cyclingleg\CEC\CMC\cyclingleg_Kinematics_q.sto to set the initial configuration.
+
+Using IPOPT optimizer algorithm.
+
+Setting optimizer print level to 0.
+Setting optimizer convergence tolerance to 1e-05.
+Setting optimizer maximum iterations to 1000.
+
+Setting cmc controller to not use verbose printing.
+
+
+
+================================================================
+================================================================
+Computing initial values for muscles states (activation, length)
+Start time = Tue Jan 26 12:51:51 2021
+
+================================================================
+CMC.computeControls:  t = 0
+CMC.computeControls:  t = 0
+
+----------------------------------------------------------------
+Finished computing initial states:
+----------------------------------------------------------------
+================================================================
+Start time   = Tue Jan 26 12:51:51 2021
+Finish time  = Tue Jan 26 12:51:55 2021
+Elapsed time = 4 seconds.
+================================================================
+
+
+
+================================================================
+================================================================
+Using CMC to track the specified kinematics
+Integrating from 0.03 to 1
+Start time = Tue Jan 26 12:51:55 2021
+================================================================
+CMC.computeControls:  t = 0.03
+CMC.computeControls:  t = 0.04
+CMC.computeControls:  t = 0.05
+CMC.computeControls:  t = 0.06
+CMC.computeControls:  t = 0.07
+CMC.computeControls:  t = 0.08
+CMC.computeControls:  t = 0.09
+CMC.computeControls:  t = 0.1
+CMC.computeControls:  t = 0.11
+CMC.computeControls:  t = 0.12
+CMC.computeControls:  t = 0.13
+CMC.computeControls:  t = 0.14
+CMC.computeControls:  t = 0.15
+CMC.computeControls:  t = 0.16
+CMC.computeControls:  t = 0.17
+CMC.computeControls:  t = 0.18
+CMC.computeControls:  t = 0.19
+CMC.computeControls:  t = 0.2
+CMC.computeControls:  t = 0.21
+CMC.computeControls:  t = 0.22
+CMC.computeControls:  t = 0.23
+CMC.computeControls:  t = 0.24
+SimTK Exception thrown at InteriorPointOptimizer.cpp:264:
+  Optimizer failed: Ipopt: Infeasible problem detected (status 2)
+OPTIMIZATION FAILED...
+
+
+CMC.computeControls: ERROR- Optimizer could not find a solution.
+Unable to find a feasible solution at time = 0.24.
+Model cannot generate the forces necessary to achieve the target acceleration.
+Possible issues: 1. not all model degrees-of-freedom are actuated, 
+2. there are tracking tasks for locked coordinates, and/or
+3. there are unnecessary control constraints on reserve/residual actuators.
+
+

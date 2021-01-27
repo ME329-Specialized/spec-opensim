@@ -1,0 +1,6 @@
+CMC.computeControls: ERROR- Optimizer could not find a solution.
+Unable to find a feasible solution at time = 0.
+Model cannot generate the forces necessary to achieve the target acceleration.
+Possible issues: 1. not all model degrees-of-freedom are actuated, 
+2. there are tracking tasks for locked coordinates, and/or
+3. there are unnecessary control constraints on reserve/residual actuators.

@@ -1,0 +1,8 @@
+Adding force object set from C:\Users\cclan\Documents\OpenSim\4.1\Models\485cyclingleg\CEC\CMC\cyclingleg_Actuators.xml
+ControlSetController::extendFinalizeFromProperties Unable to load control set file 'CMC/vastcontrols_good.xml'.
+Details: Object: Cannot open file CMC/vastcontrols_good.xml. It may not exist or you do not have permission to read it.
+	Thrown at Object.cpp:105 in Object().
+Adding force object set from C:\Users\cclan\Documents\OpenSim\4.1\Models\485cyclingleg\CEC\CMC\cyclingleg_Actuators.xml
+ControlSetController::extendFinalizeFromProperties Unable to load control set file 'vastcontrols_good.xml'.
+Details: Object: Cannot open file vastcontrols_good.xml. It may not exist or you do not have permission to read it.
+	Thrown at Object.cpp:105 in Object().
