@@ -12,8 +12,8 @@ for m = 1:length(mark_names)
     mark_m = importdata(sto_file, '\t');
     % a struct with fields data, textdata, and colheaders
     x_pos(:, m) = mark_m.data(1:500,2);
-    z_pos(:, m) = mark_m.data(1:500,3);
-    y_pos(:, m) = mark_m.data(1:500,4);
+    y_pos(:, m) = mark_m.data(1:500,3);
+    z_pos(:, m) = mark_m.data(1:500,4);
 end
 %%
 figure(1); clf; hold on; box on; grid on;
