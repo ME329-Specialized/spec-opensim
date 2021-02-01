@@ -1,4 +1,5 @@
 pref = 'cyclingleg_PointKinematics_';
+% add in heel marker data!!!
 marker_names = {'RASI', 'LASI', 'RPSI', 'LPSI', 'RTHI', 'RKNE', ...
     'RTIB', 'RANK', 'RPED', 'RTOE'};
 % pelvis[1,2,3,4], femur_r[5,6], tibia_r[6,7,8], foot[9,11]
