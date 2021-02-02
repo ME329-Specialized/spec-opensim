@@ -120,26 +120,47 @@ knee_angle = knee_r_angle_b2;
 % using Bini 2014 paper ankle angles
 ankle_angle = ankle_r_angle_b2;
 
-x = time;
+% interpolates hip, knee, and ankle angles over the whole 360 degrees of a
+% crank rotation
+x = crank_angle_b2;
 v = [hip_angle knee_angle ankle_angle];
-xq = 1:0.1:360;
+xq = 0:0.1:360;
 vq = interp1(x,v,xq,'pchip');
 
-% x = crank_angle_b2;
-% v = [hip_angle knee_angle ankle_angle];
-% xq = 1:0.1:360;
-% vq = interp1(x,v,xq,'pchip');
-
-
+new_time = zeros(length(xq), 1);
+for i = 1:length(xq)
+    c = xq(i)
+    if c <= 150
+        new_time(i) = 0.0014*c; % formula from linear trendline of crank angle vs time graph
+    else
+        new_time(i) = (5*10^(-8))*c^3 - (3*10^(-5))*c^2 + 0.0074*c - 0.3756; % formula from polynomial trendline of crank angle vs time graph
+        
+    end
+end 
 hold off;
+
+% plotting the final joint angles vs time
+fig_3 = figure('Name', 'Time vs Joint Angles');
+clf; box on; grid on; hold on;
+xlabel('Time [sec]')
+ylabel('Joint Angle [deg]')
+ylim([0 360])
+
+set(groot,'defaultLineLineWidth',1.5)
+plot(new_time, vq(:,1), 'Color', [0.8 0 0], 'DisplayName', 'Hip');
+plot(new_time, vq(:,2), 'Color', [0.8 0.8 0], 'DisplayName', 'Knee');
+plot(new_time, vq(:,3), 'Color', [0.8 0.8 0.8], 'DisplayName', 'Ankle');
 %% export joints angles to excel file for easy reading
 curr_path = pwd;
 
 excel = 'coordinates.xlsx';
-header_1 = {'Crank', 'Hip', 'Knee', 'Ankle'};
+% header_1 = {'Crank', 'Hip', 'Knee', 'Ankle'};
+header_1 = {'Time', 'Hip', 'Knee', 'Ankle'};
 writecell(header_1, excel, ...
     'WriteMode','overwritesheet','AutoFitWidth', 1);
-writecell(num2cell([transpose(xq), vq(:,1), vq(:,2), vq(:,3)])...
+% writecell(num2cell([transpose(xq), vq(:,1), vq(:,2), vq(:,3)])...
+%     ,excel,'WriteMode','append');
+writecell(num2cell([new_time, vq(:,1), vq(:,2), vq(:,3)])...
     ,excel,'WriteMode','append');
 
 % excel = 'Hip, Knee, Ankle Joint Angles.xlsx';
