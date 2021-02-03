@@ -52,49 +52,6 @@ hip_r_angle_b2 = table2array(bini_data_2(:,2));
 knee_r_angle_b2 = 180 - table2array(bini_data_2(:,3));
 ankle_r_angle_b2 = table2array(bini_data_2(:,4));
 
-%% Plot comparison section
-% first plot: ME485 vs 2010 Bini paper
-fig_2 = figure('Name', 'Joint Angles vs Crank Angle - ME 485 vs 2010');
-clf; box on; grid on; hold on;
-xlabel('Time [sec]')
-ylabel('Crank Angle [deg]')
-
-set(groot,'defaultLineLineWidth',1.5)
-plot(crank_angle, hip_r_angle(cycle_start_index:cycle_end_index), 'Color', [0.8 0 0], 'DisplayName', 'Hip');
-plot(crank_angle, knee_r_angle(cycle_start_index:cycle_end_index), 'Color', [0 0.2 1], 'DisplayName', 'Knee');
-plot(crank_angle, ankle_r_angle(cycle_start_index:cycle_end_index), 'Color', [0 0.8 0], 'DisplayName', 'Ankle');
-plot(crank_angle_b, hip_r_angle_b, 'Color', [1 0 1], 'DisplayName', 'Hip_b_i_n_i');
-plot(crank_angle_b, knee_r_angle_b, 'Color', [0 1 1], 'DisplayName', 'Knee_b_i_n_i');
-plot(crank_angle_b, ankle_r_angle_b, 'Color', [1 1 0], 'DisplayName', 'Ankle_b_i_n_i');
-
-legend('Location', 'best', 'AutoUpdate', 'off');
-
-hold off;
-
-% second plot: ME 485 vs 2014 Bini paper vs 2010 Bini paper
-fig_3 = figure('Name', 'Joint Angles vs Crank Angle - ME485 vs 2010 vs 2014');
-clf; box on; grid on; hold on;
-xlabel('Crank Angle [deg]')
-ylabel('Joint Angle [deg]')
-
-set(groot,'defaultLineLineWidth',1.5)
-plot(crank_angle, hip_r_angle(cycle_start_index:cycle_end_index), 'DisplayName', 'Hip');
-plot(crank_angle, knee_r_angle(cycle_start_index:cycle_end_index), 'DisplayName', 'Knee');
-plot(crank_angle, ankle_r_angle(cycle_start_index:cycle_end_index), 'DisplayName', 'Ankle');
-
-plot(crank_angle_b, hip_r_angle_b, 'Color', [0.8 0 0], 'DisplayName', 'Hip_1_0');
-plot(crank_angle_b, knee_r_angle_b, 'Color', [0 0.2 1], 'DisplayName', 'Knee_1_0');
-plot(crank_angle_b, ankle_r_angle_b, 'Color', [0 0.8 0], 'DisplayName', 'Ankle_1_0');
-
-plot(crank_angle_b2, hip_r_angle_b2, 'Color', [1 0 1], 'DisplayName', 'Hip_1_4');
-plot(crank_angle_b2, knee_r_angle_b2, 'Color', [0 1 1], 'DisplayName', 'Knee_1_4');
-plot(crank_angle_b2, ankle_r_angle_b2, 'Color', [1 1 0], 'DisplayName', 'Ankle_1_4');
-
-legend('Hip', 'Knee', 'Ankle', 'Hip_1_0', 'Knee_1_0', 'Ankle_1_0', 'Hip_1_4', 'Knee_1_4', 'Ankle_1_4')
-legend('Location', 'best', 'AutoUpdate', 'off');
-
-hold off
-
 % Decision point: using these angles from these sources to formulate our
 % kinematics file
 
@@ -107,6 +64,9 @@ knee_angle = knee_r_angle_b2;
 % using Bini 2014 paper ankle angles
 ankle_angle = ankle_r_angle_b2;
 
+% grabbing preprocessed time data (reduction from 655 points --> 481)
+new_time = table2array(readtable('reduced_time.csv'));
+
 % interpolates hip, knee, and ankle angles over the whole 360 degrees of a
 % crank rotation
 x = crank_angle_b2;
@@ -114,26 +74,65 @@ v = [hip_angle knee_angle ankle_angle];
 xq = 0:0.1:360;
 vq = interp1(x,v,xq,'pchip');
 
-% plotting the final joint angles vs crank angle
+% plotting the joint angles vs crank angle
 fig_4 = figure('Name', 'Crank vs Joint Angles');
 clf; box on; grid on; hold on;
 xlabel('Crank Angle [deg]')
 ylabel('Joint Angle [deg]')
 ylim([0 360])
-legend('Hip', 'Knee', 'Ankle')
+xlim([0 360])
+legend('Hip_C', 'Knee_C', 'Ankle_C')
 
 set(groot,'defaultLineLineWidth',1.5)
-plot(transpose(xq), vq(:,1), 'Color', [0.8 0 0], 'DisplayName', 'Hip');
-plot(transpose(xq), vq(:,2), 'Color', [0.8 0.8 0], 'DisplayName', 'Knee');
-plot(transpose(xq), vq(:,3), 'Color', [0.8 0.8 0.8], 'DisplayName', 'Ankle');
+plot(transpose(xq), vq(:,1), 'Color', [0.8 0 0], 'DisplayName', 'Hip_C');
+plot(transpose(xq), vq(:,2), 'Color', [0.8 0.8 0], 'DisplayName', 'Knee_C');
+plot(transpose(xq), vq(:,3), 'Color', [0.8 0.8 0.8], 'DisplayName', 'Ankle_C');
 hold off;
 
-%% export joints angles to excel file for easy reading
+% plotting the joint angles vs time, imposing cadence of 80 RPM.
+% 360deg/80rpm = .75 sec per revolution of crank
+fig_6 = figure('Name', 'Time vs Joint Angles');
+clf; box on; grid on; hold on;
+xlabel('Time [sec]')
+ylabel('Joint Angle [deg]')
+ylim([0 360])
+xlim([0 .75])
+legend('Hip_C', 'Knee_C', 'Ankle_C')
+x = linspace(0,0.75, length(vq))
+
+set(groot,'defaultLineLineWidth',1.5)
+plot(x, vq(:,1), 'Color', [1 0 0], 'DisplayName', 'Hip_C');
+plot(x, vq(:,2), 'Color', [1 1 0], 'DisplayName', 'Knee_C');
+plot(x, vq(:,3), 'Color', [0.8 1 1], 'DisplayName', 'Ankle_C');
+hold off;
+
+% Plotting Time vs Joint Angles, trying to factor in angular acceleration
+% of joints through time. Conclusion: not doing this, inacurrate joint
+% angles
+% x = new_time;
+% v = [hip_angle knee_angle ankle_angle];
+% xq = 0:0.001:0.5371;
+% vq = interp1(x,v,xq,'pchip');
+% 
+% fig_5 = figure('Name', 'Time vs Joint Angles');
+% clf; box on; grid on; hold on;
+% xlabel('Time [sec]');
+% ylabel('Joint Angle [deg]');
+% ylim([0 360]);
+% xlim([0 0.5371]);
+% legend('Hip_T', 'Knee_T', 'Ankle_T');
+% 
+% plot(transpose(xq), vq(:,1), 'Color', [1 0 0], 'DisplayName', 'Hip_T');
+% plot(transpose(xq), vq(:,2), 'Color', [1 1 0], 'DisplayName', 'Knee_T');
+% plot(transpose(xq), vq(:,3), 'Color', [0 0 1], 'DisplayName', 'Ankle_T');
+% hold off
+
+%% Writing to excel file
 curr_path = pwd;
 
 excel = 'coordinates.xlsx';
-header_1 = {'Crank', 'Hip', 'Knee', 'Ankle'};
+header_1 = {'Time', 'Hip', 'Knee', 'Ankle'};
 writecell(header_1, excel, ...
     'WriteMode','overwritesheet','AutoFitWidth', 1);
-writecell(num2cell([transpose(xq), vq(:,1), vq(:,2), vq(:,3)])...
+writecell(num2cell([transpose(x), vq(:,1), vq(:,2), vq(:,3)])...
     ,excel,'WriteMode','append');
