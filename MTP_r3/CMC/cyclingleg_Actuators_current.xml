@@ -91,7 +91,7 @@
 				<!--The maximum generalized force produced by this actuator.-->
 				<optimal_force>1</optimal_force>
 			</CoordinateActuator>
-			<CoordinateActuator name="pelvis_rotation">
+			<CoordinateActuator name="pelvis_list">
 				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
 				<isDisabled>false</isDisabled>
 				<!--Minimum allowed value for control signal. Used primarily when solving for control values.-->
@@ -99,10 +99,11 @@
 				<!--Maximum allowed value for control signal. Used primarily when solving for control values.-->
 				<max_control>Inf</max_control>
 				<!--Name of the generalized coordinate to which the actuator applies.-->
-				<coordinate>pelvis_rotation</coordinate>
+				<coordinate>pelvis_list</coordinate>
 				<!--The maximum generalized force produced by this actuator.-->
 				<optimal_force>1</optimal_force>
 			</CoordinateActuator>
+			
 			<CoordinateActuator name="pelvis_tx">
 				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
 				<isDisabled>false</isDisabled>
