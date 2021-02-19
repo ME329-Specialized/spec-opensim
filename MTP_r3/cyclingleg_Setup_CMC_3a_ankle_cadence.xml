@@ -6,9 +6,9 @@
 		<!--Replace the model's force set with sets specified in <force_set_files>? If false, the force set is appended to.-->
 		<replace_force_set>false</replace_force_set>
 		<!--List of xml files used to construct an force set for the model.-->
-		<force_set_files>CMC/3a/cyclingleg_Actuators_3a.xml</force_set_files>
+		<force_set_files>CMC/3a_ankle_cadence/cyclingleg_Actuators_3a_ankle_cadence.xml</force_set_files>
 		<!--Directory used for writing results.-->
-		<results_directory>CMC/ResultsCMC/3a</results_directory>
+		<results_directory>CMC/ResultsCMC/3a_ankle_cadence</results_directory>
 		<!--Output precision.  It is 8 by default.-->
 		<output_precision>8</output_precision>
 		<!--Initial time for the simulation.-->
@@ -44,9 +44,9 @@
 		<!--Motion (.mot) or storage (.sto) file containing the desired point trajectories.-->
 		<desired_points_file />
 		<!--Motion (.mot) or storage (.sto) file containing the desired kinematic trajectories.-->
-		<desired_kinematics_file>CMC/cyclingleg_Kinematics_q.sto</desired_kinematics_file>
+		<desired_kinematics_file>CMC/fwd_cyclingleg_Kinematics_q.sto</desired_kinematics_file>
 		<!--File containing the tracking tasks. Which coordinates are tracked and with what weights are specified here.-->
-		<task_set_file>CMC/3a/cyclingleg_kinematics_Tracking_Tasks_3a.xml</task_set_file>
+		<task_set_file>CMC/3a_ankle_cadence/cyclingleg_kinematics_Tracking_Tasks_3a_ankle_cadence.xml</task_set_file>
 		<!--File containing the constraints on the controls.-->
 		<constraints_file />
 		<!--File containing the controls output by RRA. These can be used to place constraints on the residuals during CMC.-->
