@@ -8,7 +8,7 @@
 		<!--List of xml files used to construct a force set for the model.-->
 		<force_set_files />
 		<!--Directory used for writing results.-->
-		<results_directory>.</results_directory>
+		<results_directory>muscled_up_analyses</results_directory>
 		<!--Output precision.  It is 8 by default.-->
 		<output_precision>8</output_precision>
 		<!--Initial time for the simulation.-->
@@ -72,6 +72,22 @@
 					<!--Flag (true or false) indicating whether the results are in degrees or not.-->
 					<in_degrees>true</in_degrees>
 				</Kinematics>
+				<PointKinematics name="PointKinematics">
+					<!--Flag (true or false) specifying whether on. True by default.-->
+					<on>true</on>
+					<!--Start time.-->
+					<start_time>0</start_time>
+					<!--End time.-->
+					<end_time>3</end_time>
+					<!--Specifies how often to store results during a simulation. More specifically, the interval (a positive integer) specifies how many successful integration steps should be taken before results are recorded again.-->
+					<step_interval>1</step_interval>
+					<!--Flag (true or false) indicating whether the results are in degrees or not.-->
+					<in_degrees>true</in_degrees>
+					<body_name>ground</body_name>
+					<relative_to_body_name>calcn_r</relative_to_body_name>
+					<point_name>PedalClip</point_name>
+					<point> 0.17 -0.027 0.017</point>
+				</PointKinematics>
 			</objects>
 			<groups />
 		</AnalysisSet>
