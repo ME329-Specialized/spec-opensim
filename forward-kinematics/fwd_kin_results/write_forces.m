@@ -4,8 +4,18 @@ trial_num = 4;
 trial_folder = ['\Trial ', num2str(trial_num), '\muscled_up_analyses\'];
 force_reporter_filename = 'fwd_cyclingleg_ForceReporter_forces.sto';
 point_kin_filename = 'fwd_cyclingleg_PointKinematics_PedalClip_pos.sto';
+if startsWith(pwd, 'C:\Users\david')
+    % if David Gonzalez is running this code on his machine, this block
+    % automatically moves into the correct folder
+    cd C:\Users\david\GitHub\spec-opensim\forward-kinematics\fwd_kin_results;
+end
 return2here = pwd;
 try
+    if ~endsWith(return2here, '\fwd_kin_results')
+        ME = MException('write_forces:IncorrectPath',...
+            'Not being ran from correct folder. Navigate to "fwd_kin_results".');
+        throw(ME)
+    end
     force_file_path = [pwd, trial_folder];
     cd(force_file_path)
     force_report = importdata(force_reporter_filename, '\t');
