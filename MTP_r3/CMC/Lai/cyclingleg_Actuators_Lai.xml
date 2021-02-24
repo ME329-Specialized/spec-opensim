@@ -43,7 +43,7 @@
 				<!--Interpret direction in Ground frame if true; otherwise, body frame.-->
 				<force_is_global>true</force_is_global>
 				<!--The maximum force produced by this actuator when fully activated.-->
-				<optimal_force>1</optimal_force>
+				<optimal_force>2</optimal_force>
 			</PointActuator>
 			<TorqueActuator name="MZ">
 				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
@@ -71,86 +71,15 @@
 				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
 				<isDisabled>false</isDisabled>
 				<!--Minimum allowed value for control signal. Used primarily when solving for control values.-->
-				<min_control>-Inf</min_control>
+				<min_control>-1000</min_control>
 				<!--Maximum allowed value for control signal. Used primarily when solving for control values.-->
-				<max_control>Inf</max_control>
+				<max_control>1000</max_control>
 				<!--Name of the generalized coordinate to which the actuator applies.-->
 				<coordinate>crank_angle</coordinate>
 				<!--The maximum generalized force produced by this actuator.-->
 				<optimal_force>1</optimal_force>
 			</CoordinateActuator>
-			<CoordinateActuator name="pelvis_tilt">
-				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
-				<isDisabled>false</isDisabled>
-				<!--Minimum allowed value for control signal. Used primarily when solving for control values.-->
-				<min_control>-Inf</min_control>
-				<!--Maximum allowed value for control signal. Used primarily when solving for control values.-->
-				<max_control>Inf</max_control>
-				<!--Name of the generalized coordinate to which the actuator applies.-->
-				<coordinate>pelvis_tilt</coordinate>
-				<!--The maximum generalized force produced by this actuator.-->
-				<optimal_force>1</optimal_force>
-			</CoordinateActuator>
-			<CoordinateActuator name="pelvis_list">
-				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
-				<isDisabled>false</isDisabled>
-				<!--Minimum allowed value for control signal. Used primarily when solving for control values.-->
-				<min_control>-Inf</min_control>
-				<!--Maximum allowed value for control signal. Used primarily when solving for control values.-->
-				<max_control>Inf</max_control>
-				<!--Name of the generalized coordinate to which the actuator applies.-->
-				<coordinate>pelvis_list</coordinate>
-				<!--The maximum generalized force produced by this actuator.-->
-				<optimal_force>2</optimal_force>
-			</CoordinateActuator>
-			<CoordinateActuator name="pelvis_rotation">
-				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
-				<isDisabled>false</isDisabled>
-				<!--Minimum allowed value for control signal. Used primarily when solving for control values.-->
-				<min_control>-Inf</min_control>
-				<!--Maximum allowed value for control signal. Used primarily when solving for control values.-->
-				<max_control>Inf</max_control>
-				<!--Name of the generalized coordinate to which the actuator applies.-->
-				<coordinate>pelvis_rotation</coordinate>
-				<!--The maximum generalized force produced by this actuator.-->
-				<optimal_force>1</optimal_force>
-			</CoordinateActuator>
-			<CoordinateActuator name="pelvis_tx">
-				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
-				<isDisabled>false</isDisabled>
-				<!--Minimum allowed value for control signal. Used primarily when solving for control values.-->
-				<min_control>-Inf</min_control>
-				<!--Maximum allowed value for control signal. Used primarily when solving for control values.-->
-				<max_control>Inf</max_control>
-				<!--Name of the generalized coordinate to which the actuator applies.-->
-				<coordinate>pelvis_tx</coordinate>
-				<!--The maximum generalized force produced by this actuator.-->
-				<optimal_force>1</optimal_force>
-			</CoordinateActuator>
-			<CoordinateActuator name="pelvis_ty">
-				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
-				<isDisabled>false</isDisabled>
-				<!--Minimum allowed value for control signal. Used primarily when solving for control values.-->
-				<min_control>-Inf</min_control>
-				<!--Maximum allowed value for control signal. Used primarily when solving for control values.-->
-				<max_control>Inf</max_control>
-				<!--Name of the generalized coordinate to which the actuator applies.-->
-				<coordinate>pelvis_ty</coordinate>
-				<!--The maximum generalized force produced by this actuator.-->
-				<optimal_force>1</optimal_force>
-			</CoordinateActuator>
-			<CoordinateActuator name="pelvis_tz">
-				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
-				<isDisabled>false</isDisabled>
-				<!--Minimum allowed value for control signal. Used primarily when solving for control values.-->
-				<min_control>-Inf</min_control>
-				<!--Maximum allowed value for control signal. Used primarily when solving for control values.-->
-				<max_control>Inf</max_control>
-				<!--Name of the generalized coordinate to which the actuator applies.-->
-				<coordinate>pelvis_tz</coordinate>
-				<!--The maximum generalized force produced by this actuator.-->
-				<optimal_force>1</optimal_force>
-			</CoordinateActuator>
+
 
 			<CoordinateActuator name="hip_angle_r">
 				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
@@ -164,7 +93,18 @@
 				<!--The maximum generalized force produced by this actuator.-->
 				<optimal_force>1</optimal_force>
 			</CoordinateActuator>
-
+			<CoordinateActuator name="hip_adduction_r">
+				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
+				<isDisabled>false</isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving for control values.-->
+				<min_control>-Inf</min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving for control values.-->
+				<max_control>Inf</max_control>
+				<!--Name of the generalized coordinate to which the actuator applies.-->
+				<coordinate>hip_adduction_r</coordinate>
+				<!--The maximum generalized force produced by this actuator.-->
+				<optimal_force>1</optimal_force>
+			</CoordinateActuator>
 			<CoordinateActuator name="hip_rotation_r">
 				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
 				<isDisabled>false</isDisabled>
@@ -189,7 +129,6 @@
 				<!--The maximum generalized force produced by this actuator.-->
 				<optimal_force>1</optimal_force>
 			</CoordinateActuator>
-
 			<CoordinateActuator name="ankle_angle_r">
 				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
 				<isDisabled>false</isDisabled>
@@ -199,19 +138,6 @@
 				<max_control>Inf</max_control>
 				<!--Name of the generalized coordinate to which the actuator applies.-->
 				<coordinate>ankle_angle_r</coordinate>
-				<!--The maximum generalized force produced by this actuator.-->
-				<optimal_force>2</optimal_force>
-			</CoordinateActuator>
-
-			<CoordinateActuator name="mtp_angle_r">
-				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
-				<isDisabled>false</isDisabled>
-				<!--Minimum allowed value for control signal. Used primarily when solving for control values.-->
-				<min_control>-Inf</min_control>
-				<!--Maximum allowed value for control signal. Used primarily when solving for control values.-->
-				<max_control>Inf</max_control>
-				<!--Name of the generalized coordinate to which the actuator applies.-->
-				<coordinate>mtp_angle_r</coordinate>
 				<!--The maximum generalized force produced by this actuator.-->
 				<optimal_force>1</optimal_force>
 			</CoordinateActuator>

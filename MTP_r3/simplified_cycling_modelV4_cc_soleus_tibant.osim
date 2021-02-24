@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <OpenSimDocument Version="40000">
-	<Model name="cyclingleg_gastroc">
+	<Model name="cyclingleg_gastroc_tibant">
 		<!--The model's ground reference frame.-->
 		<Ground name="ground">
 			<!--The geometry used to display the axes of this Frame.-->
@@ -329,64 +329,7 @@
 					</attached_geometry>
 					<!--Set of wrap objects fixed to this body that GeometryPaths can wrap over.This property used to be a member of Body but was moved up with the introduction of Frames.-->
 					<WrapObjectSet name="wrapobjectset">
-						<objects>
-							<WrapCylinder name="KnExt_at_fem_r">
-								<!--Whether or not the WrapObject is considered active in computing paths-->
-								<active>true</active>
-								<!--Body-fixed Euler angle sequence for the orientation of the WrapObject-->
-								<xyz_body_rotation>-0.062336599999999999 0.050760100000000002 0</xyz_body_rotation>
-								<!--Translation of the WrapObject.-->
-								<translation>0.0035882800000000001 -0.40273199999999998 0.0020911100000000002</translation>
-								<!--The name of quadrant over which the wrap object is active. For example, '+x' or '-y' to set the sidedness of the wrapping.-->
-								<quadrant>all</quadrant>
-								<!--Default appearance for this Geometry-->
-								<Appearance>
-									<!--Flag indicating whether the associated Geometry is visible or hidden.-->
-									<visible>false</visible>
-									<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
-									<opacity>0.5</opacity>
-									<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-									<color>0 1 1</color>
-									<!--Visuals applied to surfaces associated with this Appearance.-->
-									<SurfaceProperties>
-										<!--The representation (1:Points, 2:Wire, 3:Shaded) used to display the object.-->
-										<representation>3</representation>
-									</SurfaceProperties>
-								</Appearance>
-								<!--The radius of the cylinder.-->
-								<radius>0.025000000000000001</radius>
-								<!--The length of the cylinder.-->
-								<length>0.10000000000000001</length>
-							</WrapCylinder>
-							<WrapCylinder name="GasMed_at_condyles_r">
-								<!--Whether or not the WrapObject is considered active in computing paths-->
-								<active>true</active>
-								<!--Body-fixed Euler angle sequence for the orientation of the WrapObject-->
-								<xyz_body_rotation>0 0 0</xyz_body_rotation>
-								<!--Translation of the WrapObject.-->
-								<translation>0.0050000000000000001 -0.40999999999999998 0</translation>
-								<!--The name of quadrant over which the wrap object is active. For example, '+x' or '-y' to set the sidedness of the wrapping.-->
-								<quadrant>all</quadrant>
-								<!--Default appearance for this Geometry-->
-								<Appearance>
-									<!--Flag indicating whether the associated Geometry is visible or hidden.-->
-									<visible>false</visible>
-									<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
-									<opacity>0.5</opacity>
-									<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-									<color>0 1 1</color>
-									<!--Visuals applied to surfaces associated with this Appearance.-->
-									<SurfaceProperties>
-										<!--The representation (1:Points, 2:Wire, 3:Shaded) used to display the object.-->
-										<representation>3</representation>
-									</SurfaceProperties>
-								</Appearance>
-								<!--The radius of the cylinder.-->
-								<radius>0.025000000000000001</radius>
-								<!--The length of the cylinder.-->
-								<length>0.10000000000000001</length>
-							</WrapCylinder>
-						</objects>
+						<objects />
 						<groups />
 					</WrapObjectSet>
 					<!--The mass of the body (kg)-->
@@ -445,36 +388,7 @@
 					</attached_geometry>
 					<!--Set of wrap objects fixed to this body that GeometryPaths can wrap over.This property used to be a member of Body but was moved up with the introduction of Frames.-->
 					<WrapObjectSet name="wrapobjectset">
-						<objects>
-							<WrapCylinder name="GasMed_at_shank_r">
-								<!--Whether or not the WrapObject is considered active in computing paths-->
-								<active>true</active>
-								<!--Body-fixed Euler angle sequence for the orientation of the WrapObject-->
-								<xyz_body_rotation>2.9672299999999998 0.027972500000000001 -1.4781200000000001</xyz_body_rotation>
-								<!--Translation of the WrapObject.-->
-								<translation>-0.0074000000000000003 -0.073999999999999996 -0.0033</translation>
-								<!--The name of quadrant over which the wrap object is active. For example, '+x' or '-y' to set the sidedness of the wrapping.-->
-								<quadrant>-y</quadrant>
-								<!--Default appearance for this Geometry-->
-								<Appearance>
-									<!--Flag indicating whether the associated Geometry is visible or hidden.-->
-									<visible>false</visible>
-									<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
-									<opacity>0.5</opacity>
-									<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-									<color>0 1 1</color>
-									<!--Visuals applied to surfaces associated with this Appearance.-->
-									<SurfaceProperties>
-										<!--The representation (1:Points, 2:Wire, 3:Shaded) used to display the object.-->
-										<representation>3</representation>
-									</SurfaceProperties>
-								</Appearance>
-								<!--The radius of the cylinder.-->
-								<radius>0.058999999999999997</radius>
-								<!--The length of the cylinder.-->
-								<length>0.10000000000000001</length>
-							</WrapCylinder>
-						</objects>
+						<objects />
 						<groups />
 					</WrapObjectSet>
 					<!--The mass of the body (kg)-->
@@ -1527,7 +1441,7 @@
 							<!--The minimum and maximum values that the coordinate can range between. Rotational coordinate range in radians and Translational in meters.-->
 							<range>-1.571 1.571</range>
 							<!--Flag indicating whether or not the values of the coordinates should be limited to the range, above.-->
-							<clamped>true</clamped>
+							<clamped>false</clamped>
 							<!--Flag indicating whether or not the values of the coordinates should be constrained to the current (e.g. default) value, above.-->
 							<locked>false</locked>
 							<!--If specified, the coordinate can be prescribed by a function of time. It can be any OpenSim Function with valid second order derivatives.-->
@@ -1535,7 +1449,7 @@
 							<!--Flag indicating whether or not the values of the coordinates should be prescribed according to the function above. It is ignored if the no prescribed function is specified.-->
 							<prescribed>false</prescribed>
 							<!--Flag identifies whether or not this coordinate can change freely when posing the model to satisfy kinematic constraints.  When true, the coordinate's initial or specified value is ignored when considering constraints. This allows values for important coordinates, which have this flag set to false, to dictate the value of unimportant coordinates if they are linked via constraints.-->
-							<is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+							<is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
 						</Coordinate>
 					</coordinates>
 					<!--Physical offset frames owned by the Joint that are typically used to satisfy the owning Joint's parent and child frame connections (sockets). PhysicalOffsetFrames are often used to describe the fixed transformation from a Body's origin to another location of interest on the Body (e.g., the joint center). When the joint is deleted, so are the PhysicalOffsetFrame components in this list.-->
@@ -1647,7 +1561,7 @@
 							<!--Flag indicating whether or not the values of the coordinates should be prescribed according to the function above. It is ignored if the no prescribed function is specified.-->
 							<prescribed>false</prescribed>
 							<!--Flag identifies whether or not this coordinate can change freely when posing the model to satisfy kinematic constraints.  When true, the coordinate's initial or specified value is ignored when considering constraints. This allows values for important coordinates, which have this flag set to false, to dictate the value of unimportant coordinates if they are linked via constraints.-->
-							<is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+							<is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
 						</Coordinate>
 					</coordinates>
 					<!--Physical offset frames owned by the Joint that are typically used to satisfy the owning Joint's parent and child frame connections (sockets). PhysicalOffsetFrames are often used to describe the fixed transformation from a Body's origin to another location of interest on the Body (e.g., the joint center). When the joint is deleted, so are the PhysicalOffsetFrame components in this list.-->
@@ -1975,225 +1889,467 @@
 		<!--Forces in the model (includes Actuators).-->
 		<ForceSet name="forceset">
 			<objects>
-				<Millard2012EquilibriumMuscle name="recfem_r">
+				<Thelen2003Muscle name="bifemlh_r">
+					<!--Flag indicating whether the force is applied or not. If true the forceis applied to the MultibodySystem otherwise the force is not applied.NOTE: Prior to OpenSim 4.0, this behavior was controlled by the 'isDisabled' property, where 'true' meant that force was not being applied. Thus, if 'isDisabled' is true, then 'appliesForce` is false.-->
+					<appliesForce>true</appliesForce>
 					<!--The set of points defining the path of the actuator.-->
 					<GeometryPath name="geometrypath">
 						<!--The set of points defining the path-->
 						<PathPointSet>
 							<objects>
-								<PathPoint name="recfem_r-P1">
+								<PathPoint name="bifemlh_r-P1">
 									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
 									<socket_parent_frame>/bodyset/pelvis</socket_parent_frame>
 									<!--The fixed location of the path point expressed in its parent frame.-->
-									<location>-0.024 -0.038800000000000001 0.093299999999999994</location>
+									<location>-0.13175200000000001 -0.10728699999999999 0.072633299999999998</location>
 								</PathPoint>
-								<PathPoint name="recfem_r-P2">
-									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
-									<socket_parent_frame>/bodyset/patella_r</socket_parent_frame>
-									<!--The fixed location of the path point expressed in its parent frame.-->
-									<location>0.01 0.049000000000000002 0.00069999999999999999</location>
-								</PathPoint>
-								<PathPoint name="recfem_r-P3">
-									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
-									<socket_parent_frame>/bodyset/patella_r</socket_parent_frame>
-									<!--The fixed location of the path point expressed in its parent frame.-->
-									<location>0.0121 0.043700000000000003 -0.001</location>
-								</PathPoint>
-								<PathPoint name="recfem_r-P4">
-									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
-									<socket_parent_frame>/bodyset/patella_r</socket_parent_frame>
-									<!--The fixed location of the path point expressed in its parent frame.-->
-									<location>0.0050000000000000001 0.00247 3.0000000000000001e-05</location>
-								</PathPoint>
-								<PathPoint name="recfem_r-P5">
+								<PathPoint name="bifemlh_r-P2">
 									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
 									<socket_parent_frame>/bodyset/tibia_r</socket_parent_frame>
 									<!--The fixed location of the path point expressed in its parent frame.-->
-									<location>0.032599999999999997 -0.063119999999999996 -0.00046999999999999999</location>
+									<location>-0.033824199999999999 -0.040454200000000003 0.033071299999999998</location>
+								</PathPoint>
+								<PathPoint name="bifemlh_r-P3">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/tibia_r</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>-0.026295200000000001 -0.0632659 0.038543899999999999</location>
 								</PathPoint>
 							</objects>
 							<groups />
 						</PathPointSet>
 						<!--The wrap objects that are associated with this path-->
 						<PathWrapSet>
-							<objects>
-								<PathWrap name="pathwrap">
-									<!--A WrapObject that this PathWrap interacts with.-->
-									<wrap_object>KnExt_at_fem_r</wrap_object>
-									<!--The wrapping method used to solve the path around the wrap object.-->
-									<method>hybrid</method>
-									<!--The range of indices to use to compute the path over the wrap object.-->
-									<range>-1 -1</range>
-								</PathWrap>
-							</objects>
+							<objects />
 							<groups />
 						</PathWrapSet>
 						<!--Default appearance attributes for this GeometryPath-->
 						<Appearance>
+							<!--Flag indicating whether the associated Geometry is visible or hidden.-->
+							<visible>true</visible>
 							<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
 							<color>0.80000000000000004 0.10000000000000001 0.10000000000000001</color>
 						</Appearance>
 					</GeometryPath>
+					<!--The maximum force this actuator can produce.-->
+					<optimal_force>1</optimal_force>
 					<!--Maximum isometric force that the fibers can generate-->
-					<max_isometric_force>2191.7409836065599</max_isometric_force>
+					<max_isometric_force>2594</max_isometric_force>
 					<!--Optimal length of the muscle fibers-->
-					<optimal_fiber_length>0.075899999999999995</optimal_fiber_length>
+					<optimal_fiber_length>0.12823851</optimal_fiber_length>
 					<!--Resting length of the tendon-->
-					<tendon_slack_length>0.45040000000000002</tendon_slack_length>
+					<tendon_slack_length>0.38353904</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
-					<pennation_angle_at_optimal>0.21701490000000001</pennation_angle_at_optimal>
-					<!--Compute muscle dynamics ignoring tendon compliance. Tendon is assumed to be rigid.-->
-					<ignore_tendon_compliance>false</ignore_tendon_compliance>
-					<!--The linear damping of the fiber.-->
-					<fiber_damping>0.01</fiber_damping>
-					<!--Assumed initial activation level if none is assigned.-->
-					<default_activation>0.01</default_activation>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve name="recfem_r_ActiveForceLengthCurve">
-						<!--Normalized fiber length where the steep ascending limb starts-->
-						<min_norm_active_fiber_length>0.25</min_norm_active_fiber_length>
-						<!--Normalized fiber length where the steep ascending limb transitions to the shallow ascending limb-->
-						<transition_norm_fiber_length>0.77000000000000002</transition_norm_fiber_length>
-						<!--Normalized fiber length where the descending limb ends-->
-						<max_norm_active_fiber_length>1.8999999999999999</max_norm_active_fiber_length>
-						<!--Slope of the shallow ascending limb-->
-						<shallow_ascending_slope>0.75</shallow_ascending_slope>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve name="recfem_r_ForceVelocityCurve">
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.14999999999999999</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.3999999999999999</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve name="recfem_r_FiberForceLengthCurve">
-						<!--Fiber strain at zero force-->
-						<strain_at_zero_force>0</strain_at_zero_force>
-						<!--Fiber strain at a tension of 1 normalized force-->
-						<strain_at_one_norm_force>0.69999999999999996</strain_at_one_norm_force>
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve name="recfem_r_TendonForceLengthCurve">
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="gasmed_r">
+					<pennation_angle_at_optimal>0</pennation_angle_at_optimal>
+					<!--Maximum contraction velocity of the fibers, in optimal fiberlengths/second-->
+					<max_contraction_velocity>10</max_contraction_velocity>
+					<!--tendon strain at maximum isometric muscle force-->
+					<FmaxTendonStrain>0.033000000000000002</FmaxTendonStrain>
+					<!--passive muscle strain at maximum isometric muscle force-->
+					<FmaxMuscleStrain>0.59999999999999998</FmaxMuscleStrain>
+					<!--shape factor for Gaussian active muscle force-length relationship-->
+					<KshapeActive>0.5</KshapeActive>
+					<!--exponential shape factor for passive force-length relationship-->
+					<KshapePassive>4</KshapePassive>
+					<!--force-velocity shape factor-->
+					<Af>0.29999999999999999</Af>
+					<!--maximum normalized lengthening force-->
+					<Flen>1.8</Flen>
+					<!--Activation time constant, in seconds-->
+					<activation_time_constant>0.01</activation_time_constant>
+					<!--Deactivation time constant, in seconds-->
+					<deactivation_time_constant>0.040000000000000001</deactivation_time_constant>
+				</Thelen2003Muscle>
+				<Thelen2003Muscle name="bifemsh_r">
+					<!--Flag indicating whether the force is applied or not. If true the forceis applied to the MultibodySystem otherwise the force is not applied.NOTE: Prior to OpenSim 4.0, this behavior was controlled by the 'isDisabled' property, where 'true' meant that force was not being applied. Thus, if 'isDisabled' is true, then 'appliesForce` is false.-->
+					<appliesForce>true</appliesForce>
 					<!--The set of points defining the path of the actuator.-->
 					<GeometryPath name="geometrypath">
 						<!--The set of points defining the path-->
 						<PathPointSet>
 							<objects>
-								<PathPoint name="gasmed_r-P1">
+								<PathPoint name="bifemsh_r-P1">
 									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
 									<socket_parent_frame>/bodyset/femur_r</socket_parent_frame>
 									<!--The fixed location of the path point expressed in its parent frame.-->
-									<location>0.0060000000000000001 -0.38500000000000001 -0.021999999999999999</location>
+									<location>0.0058688999999999998 -0.24778500000000001 0.027466500000000001</location>
 								</PathPoint>
-								<PathPoint name="gasmed_r-P2">
+								<PathPoint name="bifemsh_r-P2">
 									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
-									<socket_parent_frame>/bodyset/calcn_r</socket_parent_frame>
+									<socket_parent_frame>/bodyset/tibia_r</socket_parent_frame>
 									<!--The fixed location of the path point expressed in its parent frame.-->
-									<location>0.0044000000000000003 0.031 -0.0053</location>
+									<location>-0.033824199999999999 -0.040454200000000003 0.033071299999999998</location>
+								</PathPoint>
+								<PathPoint name="bifemsh_r-P3">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/tibia_r</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>-0.026295200000000001 -0.0632659 0.038543899999999999</location>
 								</PathPoint>
 							</objects>
 							<groups />
 						</PathPointSet>
 						<!--The wrap objects that are associated with this path-->
 						<PathWrapSet>
-							<objects>
-								<PathWrap name="pathwrap">
-									<!--A WrapObject that this PathWrap interacts with.-->
-									<wrap_object>GasMed_at_shank_r</wrap_object>
-									<!--The wrapping method used to solve the path around the wrap object.-->
-									<method>hybrid</method>
-									<!--The range of indices to use to compute the path over the wrap object.-->
-									<range>-1 -1</range>
-								</PathWrap>
-								<PathWrap name="pathwrap_0">
-									<!--A WrapObject that this PathWrap interacts with.-->
-									<wrap_object>GasMed_at_condyles_r</wrap_object>
-									<!--The wrapping method used to solve the path around the wrap object.-->
-									<method>hybrid</method>
-									<!--The range of indices to use to compute the path over the wrap object.-->
-									<range>-1 -1</range>
-								</PathWrap>
-							</objects>
+							<objects />
 							<groups />
 						</PathWrapSet>
+						<!--Default appearance attributes for this GeometryPath-->
 						<Appearance>
+							<!--Flag indicating whether the associated Geometry is visible or hidden.-->
+							<visible>true</visible>
 							<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
 							<color>0.80000000000000004 0.10000000000000001 0.10000000000000001</color>
 						</Appearance>
 					</GeometryPath>
+					<!--The maximum force this actuator can produce.-->
+					<optimal_force>1</optimal_force>
 					<!--Maximum isometric force that the fibers can generate-->
-					<max_isometric_force>3115.5147540983598</max_isometric_force>
+					<max_isometric_force>960</max_isometric_force>
 					<!--Optimal length of the muscle fibers-->
-					<optimal_fiber_length>0.058999999999999997</optimal_fiber_length>
+					<optimal_fiber_length>0.20083733000000001</optimal_fiber_length>
 					<!--Resting length of the tendon-->
-					<tendon_slack_length>0.38700000000000001</tendon_slack_length>
+					<tendon_slack_length>0.10332094</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
-					<pennation_angle_at_optimal>0.16568155000000001</pennation_angle_at_optimal>
-					<!--Compute muscle dynamics ignoring tendon compliance. Tendon is assumed to be rigid.-->
-					<ignore_tendon_compliance>false</ignore_tendon_compliance>
-					<!--The linear damping of the fiber.-->
-					<fiber_damping>0.01</fiber_damping>
-					<!--Assumed initial activation level if none is assigned.-->
-					<default_activation>0.01</default_activation>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve name="gasmed_r_ActiveForceLengthCurve">
-						<!--Normalized fiber length where the steep ascending limb starts-->
-						<min_norm_active_fiber_length>0.25</min_norm_active_fiber_length>
-						<!--Normalized fiber length where the steep ascending limb transitions to the shallow ascending limb-->
-						<transition_norm_fiber_length>0.77000000000000002</transition_norm_fiber_length>
-						<!--Normalized fiber length where the descending limb ends-->
-						<max_norm_active_fiber_length>1.8999999999999999</max_norm_active_fiber_length>
-						<!--Slope of the shallow ascending limb-->
-						<shallow_ascending_slope>0.75</shallow_ascending_slope>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve name="gasmed_r_ForceVelocityCurve">
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.14999999999999999</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.3999999999999999</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve name="gasmed_r_FiberForceLengthCurve">
-						<!--Fiber strain at zero force-->
-						<strain_at_zero_force>0</strain_at_zero_force>
-						<!--Fiber strain at a tension of 1 normalized force-->
-						<strain_at_one_norm_force>0.69999999999999996</strain_at_one_norm_force>
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve name="gasmed_r_TendonForceLengthCurve">
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
+					<pennation_angle_at_optimal>0.40142572999999998</pennation_angle_at_optimal>
+					<!--Maximum contraction velocity of the fibers, in optimal fiberlengths/second-->
+					<max_contraction_velocity>10</max_contraction_velocity>
+					<!--tendon strain at maximum isometric muscle force-->
+					<FmaxTendonStrain>0.033000000000000002</FmaxTendonStrain>
+					<!--passive muscle strain at maximum isometric muscle force-->
+					<FmaxMuscleStrain>0.59999999999999998</FmaxMuscleStrain>
+					<!--shape factor for Gaussian active muscle force-length relationship-->
+					<KshapeActive>0.5</KshapeActive>
+					<!--exponential shape factor for passive force-length relationship-->
+					<KshapePassive>4</KshapePassive>
+					<!--force-velocity shape factor-->
+					<Af>0.29999999999999999</Af>
+					<!--maximum normalized lengthening force-->
+					<Flen>1.8</Flen>
+					<!--Activation time constant, in seconds-->
+					<activation_time_constant>0.01</activation_time_constant>
+					<!--Deactivation time constant, in seconds-->
+					<deactivation_time_constant>0.040000000000000001</deactivation_time_constant>
+				</Thelen2003Muscle>
+				<Thelen2003Muscle name="glut_max2_r">
+					<!--Flag indicating whether the force is applied or not. If true the forceis applied to the MultibodySystem otherwise the force is not applied.NOTE: Prior to OpenSim 4.0, this behavior was controlled by the 'isDisabled' property, where 'true' meant that force was not being applied. Thus, if 'isDisabled' is true, then 'appliesForce` is false.-->
+					<appliesForce>true</appliesForce>
+					<!--The set of points defining the path of the actuator.-->
+					<GeometryPath name="geometrypath">
+						<!--The set of points defining the path-->
+						<PathPointSet>
+							<objects>
+								<PathPoint name="glut_max2_r-P1">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/pelvis</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>-0.14110300000000001 0.018409399999999999 0.058888999999999997</location>
+								</PathPoint>
+								<PathPoint name="glut_max2_r-P2">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/pelvis</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>-0.143928 -0.054391299999999997 0.095603099999999996</location>
+								</PathPoint>
+								<PathPoint name="glut_max2_r-P3">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/femur_r</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>-0.050002999999999999 -0.062210300000000003 0.034391699999999997</location>
+								</PathPoint>
+								<PathPoint name="glut_max2_r-P4">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/femur_r</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>-0.018311000000000001 -0.119256 0.0491814</location>
+								</PathPoint>
+							</objects>
+							<groups />
+						</PathPointSet>
+						<!--The wrap objects that are associated with this path-->
+						<PathWrapSet>
+							<objects />
+							<groups />
+						</PathWrapSet>
+						<!--Default appearance attributes for this GeometryPath-->
+						<Appearance>
+							<!--Flag indicating whether the associated Geometry is visible or hidden.-->
+							<visible>true</visible>
+							<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
+							<color>0.80000000000000004 0.10000000000000001 0.10000000000000001</color>
+						</Appearance>
+					</GeometryPath>
+					<!--The maximum force this actuator can produce.-->
+					<optimal_force>1</optimal_force>
+					<!--Maximum isometric force that the fibers can generate-->
+					<max_isometric_force>1944</max_isometric_force>
+					<!--Optimal length of the muscle fibers-->
+					<optimal_fiber_length>0.16291391</optimal_fiber_length>
+					<!--Resting length of the tendon-->
+					<tendon_slack_length>0.14074875000000001</tendon_slack_length>
+					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
+					<pennation_angle_at_optimal>0</pennation_angle_at_optimal>
+					<!--Maximum contraction velocity of the fibers, in optimal fiberlengths/second-->
+					<max_contraction_velocity>10</max_contraction_velocity>
+					<!--tendon strain at maximum isometric muscle force-->
+					<FmaxTendonStrain>0.033000000000000002</FmaxTendonStrain>
+					<!--passive muscle strain at maximum isometric muscle force-->
+					<FmaxMuscleStrain>0.59999999999999998</FmaxMuscleStrain>
+					<!--shape factor for Gaussian active muscle force-length relationship-->
+					<KshapeActive>0.5</KshapeActive>
+					<!--exponential shape factor for passive force-length relationship-->
+					<KshapePassive>4</KshapePassive>
+					<!--force-velocity shape factor-->
+					<Af>0.29999999999999999</Af>
+					<!--maximum normalized lengthening force-->
+					<Flen>1.8</Flen>
+					<!--Activation time constant, in seconds-->
+					<activation_time_constant>0.01</activation_time_constant>
+					<!--Deactivation time constant, in seconds-->
+					<deactivation_time_constant>0.040000000000000001</deactivation_time_constant>
+				</Thelen2003Muscle>
+				<Thelen2003Muscle name="vas_int_r">
+					<!--Flag indicating whether the force is applied or not. If true the forceis applied to the MultibodySystem otherwise the force is not applied.NOTE: Prior to OpenSim 4.0, this behavior was controlled by the 'isDisabled' property, where 'true' meant that force was not being applied. Thus, if 'isDisabled' is true, then 'appliesForce` is false.-->
+					<appliesForce>true</appliesForce>
+					<!--The set of points defining the path of the actuator.-->
+					<GeometryPath name="geometrypath">
+						<!--The set of points defining the path-->
+						<PathPointSet>
+							<objects>
+								<PathPoint name="vas_int_r-P1">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/femur_r</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>0.034039600000000003 -0.22583500000000001 0.036387200000000001</location>
+								</PathPoint>
+								<PathPoint name="vas_int_r-P2">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/femur_r</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>0.039321599999999998 -0.244616 0.033452700000000002</location>
+								</PathPoint>
+								<ConditionalPathPoint name="vas_int_r-P3">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/femur_r</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>0.040260700000000003 -0.47303299999999998 0.0064557900000000003</location>
+									<!--Path to a Component that satisfies the Socket 'coordinate' of type Coordinate (description: The coordinate whose value determines when the path point is active according to the specified range.).-->
+									<socket_coordinate>/jointset/knee_r/knee_angle_r</socket_coordinate>
+									<!--The minimum and maximum values that the coordinate can range between, for which the PathPoint is active. Angular coordinates in radians.-->
+									<range>-2.6179899999999998 -1.4199999999999999</range>
+								</ConditionalPathPoint>
+								<MovingPathPoint name="vas_int_r-P4">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/tibia_r</socket_parent_frame>
+									<!--Path to a Component that satisfies the Socket 'x_coordinate' of type Coordinate (description: The x_location function is a function of this coordinate's value.).-->
+									<socket_x_coordinate>/jointset/knee_r/knee_angle_r</socket_x_coordinate>
+									<!--Path to a Component that satisfies the Socket 'y_coordinate' of type Coordinate (description: The y_location function is a function of this coordinate's value.).-->
+									<socket_y_coordinate>/jointset/knee_r/knee_angle_r</socket_y_coordinate>
+									<!--Path to a Component that satisfies the Socket 'z_coordinate' of type Coordinate (description: The z_location function is a function of this coordinate's value.).-->
+									<socket_z_coordinate>/jointset/knee_r/knee_angle_r</socket_z_coordinate>
+									<!--Function defining the x component of the point's location expressed in the Frame of the Point.-->
+									<x_location>
+										<SimmSpline>
+											<x> -2.0944 -1.99997 -1.5708 -1.45752 -1.39626 -1.0472 -0.698132 -0.526391 -0.349066 -0.174533 0 0.00017453 0.00034907 0.0279253 0.0872665 0.174533 2.0944</x>
+											<y> 0.00929694 0.0120089 0.022704 0.0251187 0.0263607 0.0328932 0.0392704 0.0425567 0.0463615 0.0522856 0.0623256 0.0623371 0.0623486 0.0642454 0.0688531 0.0769044 0.0729095</y>
+										</SimmSpline>
+									</x_location>
+									<!--Function defining the y component of the point's location expressed in the Frame of the Point.-->
+									<y_location>
+										<SimmSpline>
+											<x> -2.0944 -1.99997 -1.5708 -1.45752 -1.39626 -1.0472 -0.698132 -0.526391 -0.349066 -0.174533 0 0.00017453 0.00034907 0.0279253 0.0872665 0.174533 2.0944</x>
+											<y> 0.0287664 0.0291593 0.0306917 0.0308797 0.0309195 0.0304938 0.0298616 0.0295622 0.0293503 0.0292314 0.0284217 0.0284203 0.0284189 0.0281523 0.0272157 0.0245296 -0.0770547</y>
+										</SimmSpline>
+									</y_location>
+									<!--Function defining the z component of the point's location expressed in the Frame of the Point.-->
+									<z_location>
+										<SimmSpline>
+											<x> -2.0944 2.0944</x>
+											<y> 0.00202271 0.00202271</y>
+										</SimmSpline>
+									</z_location>
+								</MovingPathPoint>
+							</objects>
+							<groups />
+						</PathPointSet>
+						<!--The wrap objects that are associated with this path-->
+						<PathWrapSet>
+							<objects />
+							<groups />
+						</PathWrapSet>
+						<!--Default appearance attributes for this GeometryPath-->
+						<Appearance>
+							<!--Flag indicating whether the associated Geometry is visible or hidden.-->
+							<visible>true</visible>
+							<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
+							<color>0.80000000000000004 0.10000000000000001 0.10000000000000001</color>
+						</Appearance>
+					</GeometryPath>
+					<!--The maximum force this actuator can produce.-->
+					<optimal_force>1</optimal_force>
+					<!--Maximum isometric force that the fibers can generate-->
+					<max_isometric_force>4530</max_isometric_force>
+					<!--Optimal length of the muscle fibers-->
+					<optimal_fiber_length>0.12617328</optimal_fiber_length>
+					<!--Resting length of the tendon-->
+					<tendon_slack_length>0.13678598</tendon_slack_length>
+					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
+					<pennation_angle_at_optimal>0.052359879999999998</pennation_angle_at_optimal>
+					<!--Maximum contraction velocity of the fibers, in optimal fiberlengths/second-->
+					<max_contraction_velocity>10</max_contraction_velocity>
+					<!--tendon strain at maximum isometric muscle force-->
+					<FmaxTendonStrain>0.033000000000000002</FmaxTendonStrain>
+					<!--passive muscle strain at maximum isometric muscle force-->
+					<FmaxMuscleStrain>0.59999999999999998</FmaxMuscleStrain>
+					<!--shape factor for Gaussian active muscle force-length relationship-->
+					<KshapeActive>0.5</KshapeActive>
+					<!--exponential shape factor for passive force-length relationship-->
+					<KshapePassive>4</KshapePassive>
+					<!--force-velocity shape factor-->
+					<Af>0.29999999999999999</Af>
+					<!--maximum normalized lengthening force-->
+					<Flen>1.8</Flen>
+					<!--Activation time constant, in seconds-->
+					<activation_time_constant>0.01</activation_time_constant>
+					<!--Deactivation time constant, in seconds-->
+					<deactivation_time_constant>0.040000000000000001</deactivation_time_constant>
+				</Thelen2003Muscle>
+				<Thelen2003Muscle name="soleus_r">
+					<!--Flag indicating whether the force is applied or not. If true the forceis applied to the MultibodySystem otherwise the force is not applied.NOTE: Prior to OpenSim 4.0, this behavior was controlled by the 'isDisabled' property, where 'true' meant that force was not being applied. Thus, if 'isDisabled' is true, then 'appliesForce` is false.-->
+					<appliesForce>true</appliesForce>
+					<!--The set of points defining the path of the actuator.-->
+					<GeometryPath name="geometrypath">
+						<!--The set of points defining the path-->
+						<PathPointSet>
+							<objects>
+								<PathPoint name="soleus_r-P1">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/tibia_r</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>-0.0023999999999999998 -0.15329999999999999 0.0071000000000000004</location>
+								</PathPoint>
+								<PathPoint name="soleus_r-P2">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/calcn_r</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>0 0.031 -0.0053</location>
+								</PathPoint>
+							</objects>
+							<groups />
+						</PathPointSet>
+						<!--The wrap objects that are associated with this path-->
+						<PathWrapSet>
+							<objects />
+							<groups />
+						</PathWrapSet>
+						<!--Default appearance attributes for this GeometryPath-->
+						<Appearance>
+							<!--Flag indicating whether the associated Geometry is visible or hidden.-->
+							<visible>true</visible>
+							<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
+							<color>0.80000000000000004 0.10000000000000001 0.10000000000000001</color>
+						</Appearance>
+					</GeometryPath>
+					<!--The maximum force this actuator can produce.-->
+					<optimal_force>1</optimal_force>
+					<!--Maximum isometric force that the fibers can generate-->
+					<max_isometric_force>2500</max_isometric_force>
+					<!--Optimal length of the muscle fibers-->
+					<optimal_fiber_length>0.050000000000000003</optimal_fiber_length>
+					<!--Resting length of the tendon-->
+					<tendon_slack_length>0.25</tendon_slack_length>
+					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
+					<pennation_angle_at_optimal>0.43633231</pennation_angle_at_optimal>
+					<!--Maximum contraction velocity of the fibers, in optimal fiberlengths/second-->
+					<max_contraction_velocity>10</max_contraction_velocity>
+					<!--tendon strain at maximum isometric muscle force-->
+					<FmaxTendonStrain>0.033000000000000002</FmaxTendonStrain>
+					<!--passive muscle strain at maximum isometric muscle force-->
+					<FmaxMuscleStrain>0.59999999999999998</FmaxMuscleStrain>
+					<!--shape factor for Gaussian active muscle force-length relationship-->
+					<KshapeActive>0.5</KshapeActive>
+					<!--exponential shape factor for passive force-length relationship-->
+					<KshapePassive>4</KshapePassive>
+					<!--force-velocity shape factor-->
+					<Af>0.29999999999999999</Af>
+					<!--maximum normalized lengthening force-->
+					<Flen>1.8</Flen>
+					<!--Activation time constant, in seconds-->
+					<activation_time_constant>0.01</activation_time_constant>
+					<!--Deactivation time constant, in seconds-->
+					<deactivation_time_constant>0.040000000000000001</deactivation_time_constant>
+				</Thelen2003Muscle>
+				<Thelen2003Muscle name="tib_ant_r">
+					<!--Flag indicating whether the force is applied or not. If true the forceis applied to the MultibodySystem otherwise the force is not applied.NOTE: Prior to OpenSim 4.0, this behavior was controlled by the 'isDisabled' property, where 'true' meant that force was not being applied. Thus, if 'isDisabled' is true, then 'appliesForce` is false.-->
+					<appliesForce>true</appliesForce>
+					<!--The set of points defining the path of the actuator.-->
+					<GeometryPath name="geometrypath">
+						<!--The set of points defining the path-->
+						<PathPointSet>
+							<objects>
+								<PathPoint name="tib_ant_r-P1">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/tibia_r</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>0.017899999999999999 -0.16239999999999999 0.0115</location>
+								</PathPoint>
+								<PathPoint name="tib_ant_r-P2">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/tibia_r</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>0.032899999999999999 -0.39510000000000001 -0.0177</location>
+								</PathPoint>
+								<PathPoint name="tib_ant_r-P3">
+									<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame in which this path point is defined.).-->
+									<socket_parent_frame>/bodyset/calcn_r</socket_parent_frame>
+									<!--The fixed location of the path point expressed in its parent frame.-->
+									<location>0.1166 0.0178 -0.030499999999999999</location>
+								</PathPoint>
+							</objects>
+							<groups />
+						</PathPointSet>
+						<!--The wrap objects that are associated with this path-->
+						<PathWrapSet>
+							<objects />
+							<groups />
+						</PathWrapSet>
+						<!--Default appearance attributes for this GeometryPath-->
+						<Appearance>
+							<!--Flag indicating whether the associated Geometry is visible or hidden.-->
+							<visible>true</visible>
+							<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
+							<color>0.80000000000000004 0.10000000000000001 0.10000000000000001</color>
+						</Appearance>
+					</GeometryPath>
+					<!--The maximum force this actuator can produce.-->
+					<optimal_force>1</optimal_force>
+					<!--Maximum isometric force that the fibers can generate-->
+					<max_isometric_force>3000</max_isometric_force>
+					<!--Optimal length of the muscle fibers-->
+					<optimal_fiber_length>0.098000000000000004</optimal_fiber_length>
+					<!--Resting length of the tendon-->
+					<tendon_slack_length>0.223</tendon_slack_length>
+					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
+					<pennation_angle_at_optimal>0.087266460000000004</pennation_angle_at_optimal>
+					<!--Maximum contraction velocity of the fibers, in optimal fiberlengths/second-->
+					<max_contraction_velocity>10</max_contraction_velocity>
+					<!--tendon strain at maximum isometric muscle force-->
+					<FmaxTendonStrain>0.033000000000000002</FmaxTendonStrain>
+					<!--passive muscle strain at maximum isometric muscle force-->
+					<FmaxMuscleStrain>0.59999999999999998</FmaxMuscleStrain>
+					<!--shape factor for Gaussian active muscle force-length relationship-->
+					<KshapeActive>0.5</KshapeActive>
+					<!--exponential shape factor for passive force-length relationship-->
+					<KshapePassive>4</KshapePassive>
+					<!--force-velocity shape factor-->
+					<Af>0.29999999999999999</Af>
+					<!--maximum normalized lengthening force-->
+					<Flen>1.8</Flen>
+					<!--Activation time constant, in seconds-->
+					<activation_time_constant>0.01</activation_time_constant>
+					<!--Deactivation time constant, in seconds-->
+					<deactivation_time_constant>0.040000000000000001</deactivation_time_constant>
+				</Thelen2003Muscle>
 			</objects>
 			<groups />
 		</ForceSet>
