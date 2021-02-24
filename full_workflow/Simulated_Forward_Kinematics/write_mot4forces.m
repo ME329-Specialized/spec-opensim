@@ -13,5 +13,7 @@ writecell(heading, [results_path, filename, '.txt'],'Delimiter', '\t', 'WriteMod
 writecell(colheaders, [results_path, filename, '.txt'],'Delimiter', '\t', 'WriteMode', 'append');
 writecell(num2cell(data), [results_path, filename, '.txt'],'Delimiter', '\t', 'WriteMode', 'append');
 movefile([results_path, filename, '.txt'], [results_path, filename,'.mot'])
+
+fprintf('.mot file has been written to Results\n')
 end
 

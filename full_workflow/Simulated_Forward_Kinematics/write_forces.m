@@ -1,13 +1,9 @@
 % run this script from the folder '../full_workflow/Simulated_Forward_Kinematics'
-% trial_num = input('What is the number of the trial? ');
-% trial_num = 4;
-% trial_folder = ['\Trial ', num2str(trial_num), '\muscled_up_analyses\'];
-% force_reporter_filename = 'simulated_forward_kinematics_cyclingleg_ForceReporter_forces.sto';
-% point_kin_filename = 'fwd_cyclingleg_PointKinematics_PedalClip_pos.sto';
+
 % if David Gonzalez is running this code on his machine, this block
 % automatically moves into the correct folder
 if startsWith(pwd, 'C:\Users\david')
-    cd C:\Users\david\GitHub\spec-opensim\full_workflow\Simulated_Forward_Kinematics;
+    cd('C:\Users\david\GitHub\spec-opensim\full_workflow\Simulated_Forward_Kinematics');
 end
 
 % choose which trial folder to use based on Saddle Position Sx and Sy

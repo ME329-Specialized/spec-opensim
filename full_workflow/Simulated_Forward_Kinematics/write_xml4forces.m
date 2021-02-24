@@ -71,4 +71,6 @@ function write_xml4forces(results_path, filename)
     xmlwrite([results_path, filename, '.xml'],docNode);
     % clc;
     % type([filename, '.xml']);
+    
+    fprintf('.xml file has been written to Results\n')
 end
