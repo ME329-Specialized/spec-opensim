@@ -40,11 +40,11 @@
 			<groups />
 		</ControllerSet>
 		<!--XML file (.xml) containing the forces applied to the model as ExternalLoads.-->
-		<external_loads_file />
+		<external_loads_file> external_pedal_forces_trial_4.xml </external_loads_file>
 		<!--Motion (.mot) or storage (.sto) file containing the desired point trajectories.-->
 		<desired_points_file />
 		<!--Motion (.mot) or storage (.sto) file containing the desired kinematic trajectories.-->
-		<desired_kinematics_file>CMC/cyclingleg_Kinematics_q.sto</desired_kinematics_file>
+		<desired_kinematics_file>CMC/fwd_cyclingleg_Kinematics_q.sto</desired_kinematics_file>
 		<!--File containing the tracking tasks. Which coordinates are tracked and with what weights are specified here.-->
 		<task_set_file>CMC/cyclingleg_kinematics_Tracking_Tasks8d.xml</task_set_file>
 		<!--File containing the constraints on the controls.-->

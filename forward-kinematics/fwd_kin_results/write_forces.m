@@ -52,21 +52,21 @@ try
     smooth_Py = smoothdata(pedalclip_pos.data(:, 3), 'rloess', 100);
     smooth_Pz = smoothdata(pedalclip_pos.data(:, 4), 'rloess', 100);
     smooth_data = [t, smooth_Fx, smooth_Fy, smooth_Fz, smooth_Px, smooth_Py, smooth_Pz];
-%     figure(1); clf; hold on; box on; grid on;
-%     colororder([0.7 0 0; 0 0 0.7; 0 0.7 0; 0.4 0 0; 0 0 0.4; 0 0.4 0])
-%     plot(t, smooth_Fx, 'LineWidth', 1.5)
-%     plot(t, smooth_Fy, 'LineWidth', 1.5)
-%     plot(t, smooth_Fz, 'LineWidth', 1.5)
-%     plot(t, Fx, '--')
-%     plot(t, Fy, '--')
-%     plot(t, Fz, '--')
-%     xlabel('Time - t [s]')
-%     ylabel('Pedal force on midfoot - F [N]')
-%     ylim([-600 3000])
-%     title('External / Constraint forces during Simulated Forward Kinematics')
-%     set(gca,'FontSize', 13)
-%     legend('Smooth F_x', 'Smooth F_y', 'Smooth F_z', 'Fx', 'Fy', 'Fz', 'FontSize', 10)
-%     hold off;
+    figure(1); clf; hold on; box on; grid on;
+    colororder([0.7 0 0; 0 0 0.7; 0 0.7 0; 0.4 0 0; 0 0 0.4; 0 0.4 0])
+    plot(t, smooth_Fx, 'LineWidth', 1.5)
+    plot(t, smooth_Fy, 'LineWidth', 1.5)
+    plot(t, smooth_Fz, 'LineWidth', 1.5)
+    plot(t, Fx, '--')
+    plot(t, Fy, '--')
+    plot(t, Fz, '--')
+    xlabel('Time - t [s]')
+    ylabel('Pedal force on midfoot - F [N]')
+    ylim([-600 3000])
+    title('External / Constraint forces during Simulated Forward Kinematics')
+    set(gca,'FontSize', 13)
+    legend('Smooth F_x', 'Smooth F_y', 'Smooth F_z', 'Fx', 'Fy', 'Fz', 'FontSize', 10)
+    hold off;
     cd(return2here)
     filename = ['external_pedal_forces_trial_', num2str(trial_num)];
     modelname = 'simplified_cycling_modelV4_const_cadence';
