@@ -140,6 +140,7 @@
 				<!--The maximum generalized force produced by this actuator.-->
 				<optimal_force>1</optimal_force>
 			</CoordinateActuator>
+
 			<CoordinateActuator name="pelvis_tx">
 				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
 				<isDisabled>false</isDisabled>
@@ -152,6 +153,7 @@
 				<!--The maximum generalized force produced by this actuator.-->
 				<optimal_force>1</optimal_force>
 			</CoordinateActuator>
+
 			<CoordinateActuator name="pelvis_ty">
 				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
 				<isDisabled>false</isDisabled>
@@ -164,6 +166,7 @@
 				<!--The maximum generalized force produced by this actuator.-->
 				<optimal_force>1</optimal_force>
 			</CoordinateActuator>
+			
 			<CoordinateActuator name="pelvis_tz">
 				<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
 				<isDisabled>false</isDisabled>
