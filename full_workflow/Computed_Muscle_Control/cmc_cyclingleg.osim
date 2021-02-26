@@ -245,7 +245,7 @@
 								<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
 								<opacity>1</opacity>
 								<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-								<color>1 1 1</color>
+								<color>0.80000001192092896 1 0.80000001192092896</color>
 							</Appearance>
 							<!--Name of geometry file.-->
 							<mesh_file>sacrum.vtp</mesh_file>
@@ -262,7 +262,7 @@
 								<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
 								<opacity>1</opacity>
 								<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-								<color>1 1 1</color>
+								<color>0.80000001192092896 1 0.80000001192092896</color>
 							</Appearance>
 							<!--Name of geometry file.-->
 							<mesh_file>pelvis.vtp</mesh_file>
@@ -279,7 +279,7 @@
 								<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
 								<opacity>1</opacity>
 								<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-								<color>1 1 1</color>
+								<color>0.80000001192092896 1 0.80000001192092896</color>
 							</Appearance>
 							<!--Name of geometry file.-->
 							<mesh_file>l_pelvis.vtp</mesh_file>
@@ -321,7 +321,7 @@
 								<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
 								<opacity>1</opacity>
 								<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-								<color>1 1 1</color>
+								<color>0.80000001192092896 1 0.80000001192092896</color>
 							</Appearance>
 							<!--Name of geometry file.-->
 							<mesh_file>femur_r.vtp</mesh_file>
@@ -363,7 +363,7 @@
 								<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
 								<opacity>1</opacity>
 								<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-								<color>1 1 1</color>
+								<color>0.80000001192092896 1 0.80000001192092896</color>
 							</Appearance>
 							<!--Name of geometry file.-->
 							<mesh_file>tibia_r.vtp</mesh_file>
@@ -380,7 +380,7 @@
 								<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
 								<opacity>1</opacity>
 								<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-								<color>1 1 1</color>
+								<color>0.80000001192092896 1 0.80000001192092896</color>
 							</Appearance>
 							<!--Name of geometry file.-->
 							<mesh_file>fibula_r.vtp</mesh_file>
@@ -422,7 +422,7 @@
 								<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
 								<opacity>1</opacity>
 								<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-								<color>1 1 1</color>
+								<color>0.80000001192092896 1 0.80000001192092896</color>
 							</Appearance>
 							<!--Name of geometry file.-->
 							<mesh_file>pat.vtp</mesh_file>
@@ -464,7 +464,7 @@
 								<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
 								<opacity>1</opacity>
 								<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-								<color>1 1 1</color>
+								<color>0.80000001192092896 1 0.80000001192092896</color>
 							</Appearance>
 							<!--Name of geometry file.-->
 							<mesh_file>talus.vtp</mesh_file>
@@ -506,7 +506,7 @@
 								<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
 								<opacity>1</opacity>
 								<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-								<color>1 1 1</color>
+								<color>0.80000001192092896 1 0.80000001192092896</color>
 							</Appearance>
 							<!--Name of geometry file.-->
 							<mesh_file>foot.vtp</mesh_file>
@@ -548,7 +548,7 @@
 								<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
 								<opacity>1</opacity>
 								<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
-								<color>1 1 1</color>
+								<color>0.80000001192092896 1 0.80000001192092896</color>
 							</Appearance>
 							<!--Name of geometry file.-->
 							<mesh_file>bofoot.vtp</mesh_file>
