@@ -20,7 +20,7 @@
 				<!--Name of the generalized coordinate to which the actuator applies.-->
 				<coordinate>crank_angle</coordinate>
 				<!--The maximum generalized force produced by this actuator.-->
-				<optimal_force>175</optimal_force>
+				<optimal_force>50</optimal_force>
 			</CoordinateActuator>
 
 
