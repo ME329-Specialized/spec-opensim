@@ -8,11 +8,7 @@
 		<!--List of xml files used to construct a force set for the model.-->
 		<force_set_files> cmc_leg_Actuators.xml</force_set_files>
 		<!--Directory used for writing results.-->
-<<<<<<< HEAD
-		<results_directory>../Results/Saddle_x_-0.1_y_-0.5/CMC/Throw_Away_Testing</results_directory>
-=======
 		<results_directory>../Results/Saddle_x_-0.1_y_-0.5/CMC/Trial5</results_directory>
->>>>>>> parent of e1a629a (Just more files)
 		<!--Output precision.  It is 8 by default.-->
 		<output_precision>8</output_precision>
 		<!--Initial time for the simulation.-->
