@@ -8,7 +8,7 @@
 		<!--List of xml files used to construct an force set for the model.-->
 		<force_set_files>CMC/cyclingleg_Actuators8e_trials.xml</force_set_files>
 		<!--Directory used for writing results.-->
-		<results_directory>CMC/ResultsCMC/CMC_Trials</results_directory>
+		<results_directory>CMC/ResultsCMC/Saddle_x_-0.15_y_-0.01000000000000005</results_directory>
 		<!--Output precision.  It is 8 by default.-->
 		<output_precision>8</output_precision>
 		<!--Initial time for the simulation.-->
@@ -44,7 +44,7 @@
 		<!--Motion (.mot) or storage (.sto) file containing the desired point trajectories.-->
 		<desired_points_file />
 		<!--Motion (.mot) or storage (.sto) file containing the desired kinematic trajectories.-->
-		<desired_kinematics_file>CMC/cyclingleg_Kinematics_q.sto</desired_kinematics_file>
+		<desired_kinematics_file>CMC/adjusted_angles_Kinematics_q.sto</desired_kinematics_file>
 		<!--File containing the tracking tasks. Which coordinates are tracked and with what weights are specified here.-->
 		<task_set_file>CMC/cyclingleg_kinematics_Tracking_Tasks8d_trials.xml</task_set_file>
 		<!--File containing the constraints on the controls.-->
