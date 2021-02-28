@@ -10,7 +10,7 @@ end
 prompt = {'\fontsize{10} Enter x-distance S_x:','\fontsize{10} Enter y-distance S_y:'};
 dlgtitle = 'Saddle position?';
 dims = [1 60];
-definput = {'-0.1','-0.5'};
+definput = {'-0.09','-0.04'};
 opts.Interpreter = 'tex';
 opts.Resize = 'on';
 Sxy = inputdlg(prompt,dlgtitle,dims,definput,opts);
@@ -21,7 +21,7 @@ trial_folder = ['Saddle_x_',Sx,'_y_',Sy];
 try
     % retrieve PedalClip forces from ForceReporter_forces.sto
     results_path = [pwd,'\..\Results\',trial_folder,'\SFK\'];    
-    force_reporter = [results_path, 'sfk_leg_ForceReporter_forces.sto'];
+    force_reporter = [results_path, 'sfk_cyclingleg_x_',Sx,'_y_',Sy,'_ForceReporter_forces.sto'];
     force_report = importdata(force_reporter, '\t');
     force_indices = zeros([1,3]);
     f = 1;
