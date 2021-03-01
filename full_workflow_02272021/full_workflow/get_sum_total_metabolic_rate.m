@@ -14,10 +14,6 @@ function [time, biceps_fem_lh, biceps_fem_sh, glut_max2, vas_int, sum_total_meta
     textdata = metabolics_report.textdata;
     colheaders = metabolics_report.colheaders;
     
-    % 'rloess' smoothing:
-    % Robust quadratic regression over each window of A. 
-    % This method is a more computationally expensive version of the method 'loess', 
-    % but it is more robust to outliers.
     smooth_method = 'movmean';
     ws = 10; % window size
     time = data(:,1) - 0.06;

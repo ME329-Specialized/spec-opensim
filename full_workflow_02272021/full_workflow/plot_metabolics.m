@@ -8,7 +8,7 @@ if startsWith(pwd, 'C:\Users\david')
     cd('C:\Users\david\GitHub\spec-opensim\full_workflow_02272021\full_workflow');
 end
 
-% Current 6 CMC trials as of 4:52 pm 2/28/2021
+% Current 8 CMC trials as of 10:00 pm 2/28/2021
 Sx = [-0.11 -0.1 -0.09];
 Sy = [-0.04 -0.05 -0.06];
 
