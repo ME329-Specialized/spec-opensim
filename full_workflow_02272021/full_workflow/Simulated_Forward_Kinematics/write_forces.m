@@ -2,9 +2,10 @@
 
 % if David Gonzalez is running this code on his machine, this block
 % automatically moves into the correct folder
-% if startsWith(pwd, 'C:\Users\david')
-%     cd('C:\Users\david\GitHub\spec-opensim\full_workflow\Simulated_Forward_Kinematics');
-% end
+
+if startsWith(pwd, 'C:\Users\david')
+    cd('C:\Users\david\GitHub\spec-opensim\full_workflow\Simulated_Forward_Kinematics');
+end
 
 % choose which trial folder to use based on Saddle Position Sx and Sy
 prompt = {'\fontsize{10} Enter x-distance S_x:','\fontsize{10} Enter y-distance S_y:'};
