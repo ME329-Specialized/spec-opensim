@@ -1,7 +1,10 @@
-function sum_total_metabolic_rate = get_sum_total_metabolic_rate(Sx,Sy,k,plotting)
+function [time, biceps_fem_lh, biceps_fem_sh, glut_max2, vas_int, sum_total_metabolic_rate] = get_sum_total_metabolic_rate(Sx,Sy,k,plotting)
     % for the saddle position defined with an Sx and an Sy, fetch the data
     % outputted by CMC trial and return the total_metabolic_rate
     % throughout the entire simulation
+    
+    % also returns the raw data for the 4 muscles included in the CMC model
+    % as of 2/28/2021
     trial_name = ['Saddle_x_',num2str(Sx),'_y_',num2str(Sy)];
     trial_folder = [pwd,'\Results\', trial_name, '\CMC\'];
     metabolics_reporter = [trial_folder, 'CMC_leg_MetabolicsReporter_probes.sto'];
@@ -11,13 +14,19 @@ function sum_total_metabolic_rate = get_sum_total_metabolic_rate(Sx,Sy,k,plottin
     textdata = metabolics_report.textdata;
     colheaders = metabolics_report.colheaders;
     
-    time = data(:,1);
-    total = data(:,2);
-    basal = data(:,3);
-    biceps_fem_lh = data(:,4);
-    biceps_fem_sh = data(:,5);
-    glut_max2 = data(:,6);
-    vas_int = data(:,7);
+    % 'rloess' smoothing:
+    % Robust quadratic regression over each window of A. 
+    % This method is a more computationally expensive version of the method 'loess', 
+    % but it is more robust to outliers.
+    smooth_method = 'movmean';
+    ws = 10; % window size
+    time = data(:,1) - 0.06;
+    total = smoothdata(data(:,2), smooth_method, ws);
+    basal = smoothdata(data(:,3), smooth_method, ws);
+    biceps_fem_lh = smoothdata(data(:,4), smooth_method, ws);
+    biceps_fem_sh = smoothdata(data(:,5), smooth_method, ws);
+    glut_max2 = smoothdata(data(:,6), smooth_method, ws);
+    vas_int = smoothdata(data(:,7), smooth_method, ws);
     
     if plotting
         figure(k); clf; hold on; box on; grid on;
@@ -34,8 +43,11 @@ function sum_total_metabolic_rate = get_sum_total_metabolic_rate(Sx,Sy,k,plottin
         legend('Location','north','FontSize',10)
         xlabel('Time [s]')
         xticks(0:0.1:1)
+        axis([0 0.75 -inf inf])
+        title(['Trial ',num2str(k),' with S_{x,y} = (',num2str(Sx),',',num2str(Sy),') m'])
         ylabel('Metabolic Energy Expenditure Rate [W]')
         hold off;
+        
     end
     sum_total_metabolic_rate = sum(total);
 end
