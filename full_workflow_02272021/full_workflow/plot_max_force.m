@@ -16,44 +16,111 @@ opt_fib_len = [0.12823851; 0.20083733; 0.16291391; 0.12617328; 0.09; 0.098];
 % maximum contraction velocities as defined in the .osim for muscles
 fib_max_vel = [10; 10; 10; 10; 10; 10]; 
 %% ------------------------------------------------------------------------
-k = 1; % trial number - helps with figure windows if plotting = 1
-figure(1); clf; hold on; box on;
+k = 1; % trial number - helps with plotting
+fig2 = figure(2); clf;
+fig2.Name = 'Active force w.r.t. Time';
+tile_2 = tiledlayout(3,3,'Padding','Compact');
+
+fig1 = figure(1); clf;
+fig1.Name = 'Active force w.r.t. Crank Angle';
+tile_1 = tiledlayout(3,3,'Padding','Compact');
+
 for j = 1:length(Sy)
     for i = 1:length(Sx)
         % NO DATA FOR THIS SADDLE POSITION
         % x = -0.11, y = -0.04
+        saddle_pos = ['Sxy = (',num2str(Sx(i)),',',num2str(Sy(j)),')'];
+        
+        
         if Sx(i)==-0.11 && (Sy(j)== -0.04)
-            disp('SKIPPING THIS TRIAL')
+            disp(['SKIPPING THIS TRIAL ', saddle_pos])
         else
             % capture normalized muscle fiber lengths and muscle
             % fiber velocities from the Muscle Analysis reporter for the
             % specified trial denoted by Sx(i) and Sy(j)
-            [MA_norm_fib_lens, MA_fib_vels, MA_penn_angles] = get_muscle_states(Sx(i), Sy(j));
+            [MA_norm_fib_lens, MA_fib_vels, crank_angles] = get_muscle_states(Sx(i), Sy(j));
             norm_fib_lens = MA_norm_fib_lens.data;
             fib_vels = MA_fib_vels.data;
-            penn_angles = MA_penn_angles.data; % might be useful later
             colheaders = MA_norm_fib_lens.colheaders;
+            time = norm_fib_lens(:,1); 
             % smooth the data with movmean
             window_size = 500;
             fib_vels = smoothdata(fib_vels,'movmean',window_size);
-            
-            % set color order to be similar to OpenSim's native colororder
+
+            figure(fig1);
             colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
                 0 0.7 0.8; 1 0.5 0; 0.5 0 1])
-            saddle_pos = ['Sxy = (',num2str(Sx(i)),',',num2str(Sy(j)),')'];
-            subplot(3,3,k); hold on; box on; grid on;
-            % time data for normalized fiber lengths
-            t = norm_fib_lens(:,1);            
-            for n = 2:size(norm_fib_lens,2)
+            nexttile(k);
+            hold on; box on; grid on;
+            figure(fig2);
+            colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
+                0 0.7 0.8; 1 0.5 0; 0.5 0 1])
+            nexttile(k); hold on; box on; grid on;
+            
+            for n = 5%2:size(norm_fib_lens,2)
                 FL = Thelen2003_Active_Force_Length(norm_fib_lens(:,n));
                 v_max = 10*opt_fib_len(n-1);
                 FV = Thelen2003_Force_Velocity(fib_vels(:,n) / v_max);
-                plot(t, FL.*FV, 'DisplayName', colheaders{n});
-                lgd = legend('Location','bestoutside','Interpreter','none');
-                xlim([0 0.75])
-                title(['Normalized Active Force (F^L * F^V): ',saddle_pos],'FontWeight','normal')
-            end
-            k = k + 1; % increase trial index
+                figure(fig1);
+                plot(crank_angles, FL.*FV,'LineWIdth',1.4,'DisplayName', colheaders{n});
+                figure(fig2);
+                plot(time, FL.*FV,'LineWIdth',1.4,'DisplayName', colheaders{n});
+            end  
+            
+            figure(fig1);
+            xlabel('Crank Angle [deg]')
+            title(['Norm. Active Force (F^L\timesF^V): ',saddle_pos],'FontWeight','normal')
+            xlim([0 360] + crank_angles(1))
+            ylim([0.4 1.6])
+            xticks([0:45:360] + round(crank_angles(1)))
+            % show the downstroke of the leg between 45 and 135 deg
+            fill([45 45 135 135],[0 2 2 0],'c','DisplayName','Downstroke', ...
+                'FaceAlpha',0.1,'EdgeAlpha',0);
+            % show the upstroke of the leg between 225 and 315 deg
+            fill([225 225 315 315],[0 2 2 0],'g','DisplayName','Upstroke', ...
+                'FaceAlpha',0.1,'EdgeAlpha',0);
+            set(gca,'FontSize',12);
+            
+            figure(fig2);
+            xlabel('Time [s]')
+            title(['Norm. Active Force (F^L\timesF^V): ',saddle_pos],'FontWeight','normal')
+            xlim([0 0.75])
+            ylim([0.4 1.6])
+            xticks(0:0.15:0.75)
+%             % show the downstroke of the leg between 45 and 135 deg
+%             fill(0.75*[1/8 1/8 3/8 3/8],[0 2 2 0],'c','DisplayName','Downstroke', ...
+%                 'FaceAlpha',0.1,'EdgeAlpha',0);
+%             % show the upstroke of the leg between 225 and 315 deg
+%             fill(0.75*[5/8 5/8 7/8 7/8],[0 2 2 0],'g','DisplayName','Upstroke', ...
+%                 'FaceAlpha',0.1,'EdgeAlpha',0);
+            set(gca,'FontSize',12);
         end
+        figure(fig1);
+        gax_1 = gca;
+        figure(fig2);
+        gax_2 = gca;
+        k = k + 1; % increase trial index
     end
 end
+%%
+
+% adjust figure window for best clarity
+figure(fig1);
+fig1.Units = 'normalized';
+% fig1.OuterPosition = [0.000    0.1    0.90    0.85];
+fig1.OuterPosition(2) = 0.1;
+fig1.OuterPosition(3) = 0.90;
+fig1.OuterPosition(4) = 0.85;
+tile_1.InnerPosition = [0.035    0.08    0.7750    0.85];
+lgd_1 = legend(gax_1, 'Interpreter','none','FontSize',14);
+lgd_1.Position = [1.01 0.325 0.175 0.35];
+
+figure(fig2);
+fig2.Units = 'normalized';
+% fig2.OuterPosition = [0.000    0.1    0.90    0.85];
+fig2.OuterPosition(2) = 0.1;
+fig2.OuterPosition(3) = 0.90;
+fig2.OuterPosition(4) = 0.85;
+tile_2.InnerPosition = [0.035    0.08    0.7750    0.85];
+lgd_2 = legend(gax_2, 'Interpreter','none','FontSize',14);
+lgd_2.Position = [1.01 0.325 0.175 0.35];
