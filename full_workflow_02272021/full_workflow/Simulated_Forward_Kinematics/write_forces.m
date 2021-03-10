@@ -2,6 +2,7 @@
 
 % if David Gonzalez is running this code on his machine, this block
 % automatically moves into the correct folder
+
 if startsWith(pwd, 'C:\Users\david')
     cd('C:\Users\david\GitHub\spec-opensim\full_workflow\Simulated_Forward_Kinematics');
 end
