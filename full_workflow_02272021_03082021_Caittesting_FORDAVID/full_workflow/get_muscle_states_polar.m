@@ -1,4 +1,4 @@
-function [norm_fiber_lengths, fiber_vels, crank_angles] = get_muscle_states(Sx,Sy)
+function [norm_fiber_lengths, fiber_vels, crank_angles] = get_muscle_states_polar(theta)
     % for the saddle position defined with an Sx and an Sy, fetch the data
     % outputted by Simulated Forward Kinematics Muscle Analysis
     % require normalized muscle fiber lengths and muscle fiber
@@ -6,11 +6,11 @@ function [norm_fiber_lengths, fiber_vels, crank_angles] = get_muscle_states(Sx,S
     % to calculate maximum possible active force versus time
     % for the duration of the simulation episode
     
-    trial_name = ['Saddle_x_',num2str(Sx),'_y_',num2str(Sy)];
+    trial_name = ['Saddle_theta_',num2str(theta)];
     trial_folder = [pwd,'\Results\', trial_name, '\SFK\'];
     
     prefix = 'sfk_cyclingleg';
-    trial = ['_x_',num2str(Sx),'_y_',num2str(Sy),'_'];
+    trial = ['_theta_',num2str(theta),'_'];
 
     ma_norm_fiber_length = [trial_folder, prefix, trial, ...
         'MuscleAnalysis_NormalizedFiberLength.sto'];

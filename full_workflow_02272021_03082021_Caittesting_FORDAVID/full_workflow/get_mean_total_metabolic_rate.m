@@ -1,4 +1,4 @@
-function [time, biceps_fem_lh, biceps_fem_sh, glut_max2, vas_int, sum_total_metabolic_rate] = get_sum_total_metabolic_rate(Sx,Sy,k,plotting)
+function [time, biceps_fem_lh, biceps_fem_sh, glut_max2, vas_int, mean_total_metabolic_rate] = get_mean_total_metabolic_rate(Sx,Sy,k,plotting)
     % for the saddle position defined with an Sx and an Sy, fetch the data
     % outputted by CMC trial and return the total_metabolic_rate
     % throughout the entire simulation
@@ -24,10 +24,13 @@ function [time, biceps_fem_lh, biceps_fem_sh, glut_max2, vas_int, sum_total_meta
     glut_max2 = smoothdata(data(:,6), smooth_method, ws);
     vas_int = smoothdata(data(:,7), smooth_method, ws);
     
+    x_offset = 0;%-0.126;
+    y_offset = 0;%0.84999999999999998;
+    fs = 16;
     if plotting
         figure(k); clf; hold on; box on; grid on;
         set(gcf,'Name',trial_name)
-        set(gca,'FontSize',12)
+        set(gca,'FontSize',fs)
         colororder([0.8 0 0; 0.5 0.5 0.5; 0 0.8 0; 0 0.6 0.6; 0.6 0 0.8; 1 0.5 0]);
         set(groot,'DefaultLineLineWidth', 1.5);
         plot(time, total, 'DisplayName', 'Total Metabolics')
@@ -36,15 +39,16 @@ function [time, biceps_fem_lh, biceps_fem_sh, glut_max2, vas_int, sum_total_meta
         plot(time, biceps_fem_sh, 'DisplayName', 'Biceps Fem SH')
         plot(time, glut_max2, 'DisplayName', 'Glut Max2')
         plot(time, vas_int, 'DisplayName', 'Vas Int')
-        legend('Location','north','FontSize',10)
+        legend('Location','north','FontSize',fs)
         xlabel('Time [s]')
+        ylabel('Metabolic Energy Expenditure Rate [W]')
         xticks(0:0.1:1)
         axis([0 0.75 -inf inf])
-        title(['Trial ',num2str(k),' with S_{x,y} = (',num2str(Sx),',',num2str(Sy),') m'])
-        ylabel('Metabolic Energy Expenditure Rate [W]')
+%         title(['Trial ',num2str(k),' with S_{x,y} = (',num2str(Sx+x_offset),...
+%             ',',num2str(Sy+y_offset),') m'])
         hold off;
         
     end
-    sum_total_metabolic_rate = sum(total);
+    mean_total_metabolic_rate = mean(total);
 end
 
