@@ -46,28 +46,20 @@ for j = 1:length(Sy)
             % smooth the data with movmean
             window_size = 500;
             fib_vels = smoothdata(fib_vels,'movmean',window_size);
-
+            
+            musc_index = [2,3,4,5];%[2,3,5];
+            % figure 1 plotting -------------------------------------------
             figure(fig1);
             colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
                 0 0.7 0.8; 1 0.5 0; 0.5 0 1])
             nexttile(k);
             hold on; box on; grid on;
-            figure(fig2);
-            colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
-                0 0.7 0.8; 1 0.5 0; 0.5 0 1])
-            nexttile(k); hold on; box on; grid on;
-            
-            for n = 5%2:size(norm_fib_lens,2)
+            for n = musc_index
                 FL = Thelen2003_Active_Force_Length(norm_fib_lens(:,n));
                 v_max = 10*opt_fib_len(n-1);
                 FV = Thelen2003_Force_Velocity(fib_vels(:,n) / v_max);
-                figure(fig1);
                 plot(crank_angles, FL.*FV,'LineWIdth',1.4,'DisplayName', colheaders{n});
-                figure(fig2);
-                plot(time, FL.*FV,'LineWIdth',1.4,'DisplayName', colheaders{n});
             end  
-            
-            figure(fig1);
             xlabel('Crank Angle [deg]')
             title(['Norm. Active Force (F^L\timesF^V): ',saddle_pos],'FontWeight','normal')
             xlim([0 360] + crank_angles(1))
@@ -81,7 +73,19 @@ for j = 1:length(Sy)
                 'FaceAlpha',0.1,'EdgeAlpha',0);
             set(gca,'FontSize',12);
             
+            % figure 2 plotting -------------------------------------------
             figure(fig2);
+            colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
+                0 0.7 0.8; 1 0.5 0; 0.5 0 1])
+            nexttile(k); 
+            hold on; box on; grid on;
+            for n = musc_index
+                FL = Thelen2003_Active_Force_Length(norm_fib_lens(:,n));
+                v_max = 10*opt_fib_len(n-1);
+                FV = Thelen2003_Force_Velocity(fib_vels(:,n) / v_max);
+%                 figure(fig2);
+                plot(time, FL.*FV,'LineWIdth',1.4,'DisplayName', colheaders{n});
+            end 
             xlabel('Time [s]')
             title(['Norm. Active Force (F^L\timesF^V): ',saddle_pos],'FontWeight','normal')
             xlim([0 0.75])
@@ -95,26 +99,12 @@ for j = 1:length(Sy)
 %                 'FaceAlpha',0.1,'EdgeAlpha',0);
             set(gca,'FontSize',12);
         end
-        figure(fig1);
-        gax_1 = gca;
-        figure(fig2);
-        gax_2 = gca;
         k = k + 1; % increase trial index
     end
 end
 %%
 
 % adjust figure window for best clarity
-figure(fig1);
-fig1.Units = 'normalized';
-% fig1.OuterPosition = [0.000    0.1    0.90    0.85];
-fig1.OuterPosition(2) = 0.1;
-fig1.OuterPosition(3) = 0.90;
-fig1.OuterPosition(4) = 0.85;
-tile_1.InnerPosition = [0.035    0.08    0.7750    0.85];
-lgd_1 = legend(gax_1, 'Interpreter','none','FontSize',14);
-lgd_1.Position = [1.01 0.325 0.175 0.35];
-
 figure(fig2);
 fig2.Units = 'normalized';
 % fig2.OuterPosition = [0.000    0.1    0.90    0.85];
@@ -122,5 +112,15 @@ fig2.OuterPosition(2) = 0.1;
 fig2.OuterPosition(3) = 0.90;
 fig2.OuterPosition(4) = 0.85;
 tile_2.InnerPosition = [0.035    0.08    0.7750    0.85];
-lgd_2 = legend(gax_2, 'Interpreter','none','FontSize',14);
-lgd_2.Position = [1.01 0.325 0.175 0.35];
+lgd_2 = legend('Interpreter','none','FontSize',14);
+lgd_2.Position = [1.01 0.325 0.175 0.30];
+
+figure(fig1);
+fig1.Units = 'normalized';
+% fig1.OuterPosition = [0.000    0.1    0.90    0.85];
+fig1.OuterPosition(2) = 0.1;
+fig1.OuterPosition(3) = 0.90;
+fig1.OuterPosition(4) = 0.85;
+tile_1.InnerPosition = [0.035    0.08    0.7750    0.85];
+lgd_1 = legend('Interpreter','none','FontSize',14);
+lgd_1.Position = [1.01 0.325 0.175 0.30];

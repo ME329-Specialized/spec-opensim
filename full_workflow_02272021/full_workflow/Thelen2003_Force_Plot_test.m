@@ -20,7 +20,7 @@ passive_FM = Thelen2003_Passive_Force_Length(norm_fib_len);
 velocity_FM = Thelen2003_Force_Velocity(norm_fib_vel);
 tendon_FT = Thelen2003_Tendon_Force(norm_ten_len, norm_ten_slack_len);
 
-figure(1); clf;
+figure(3); clf;
 subplot(1, 3, 1); hold on; box on;
 title('Fiber Force-Length')
 plot(norm_fib_len, active_FM, 'b', 'DisplayName', 'Active')
