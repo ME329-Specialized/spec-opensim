@@ -7,7 +7,7 @@ end
 prompt = {'\fontsize{10} Enter angle θ in degrees:','\fontsize{10} Enter radius r in meters:'};
 dlgtitle = 'Saddle position?';
 dims = [1 60];
-definput = {'108','0.8396'};
+definput = {'102','0.8196'};
 opts.Interpreter = 'tex';
 opts.Resize = 'on';
 polar_input = inputdlg(prompt,dlgtitle,dims,definput,opts);
