@@ -1,27 +1,31 @@
-% run this script from the folder '../full_workflow/Simulated_Forward_Kinematics'
-
-% if David Gonzalez is running this code on his machine, this block
-% automatically moves into the correct folder
-if startsWith(pwd, 'C:\Users\david')
-    cd('C:\Users\david\GitHub\spec-opensim\full_workflow\Simulated_Forward_Kinematics');
+% if running this code on David's laptop, change directory to here for
+% proper pathing
+if startsWith(pwd,'C:\Users\david')
+    cd( 'C:\Users\david\GitHub\spec-opensim\full_workflow_03112021\full_workflow\Simulated_Forward_Kinematics')
 end
-
 % choose which trial folder to use based on Saddle Position Sx and Sy
-prompt = {'\fontsize{10} Enter x-distance S_x:','\fontsize{10} Enter y-distance S_y:'};
+prompt = {'\fontsize{10} Enter angle θ in degrees:','\fontsize{10} Enter radius r in meters:'};
 dlgtitle = 'Saddle position?';
 dims = [1 60];
-definput = {'-0.09','-0.04'};
+definput = {'108','0.8396'};
 opts.Interpreter = 'tex';
 opts.Resize = 'on';
-Sxy = inputdlg(prompt,dlgtitle,dims,definput,opts);
-Sx = Sxy{1};
-Sy = Sxy{2};
-trial_folder = ['Saddle_x_',Sx,'_y_',Sy];
+polar_input = inputdlg(prompt,dlgtitle,dims,definput,opts);
+try
+    theta = polar_input{1};
+    radius = polar_input{2};
+    trial_folder = ['Saddle_t_',theta,'_r_',radius];
+    disp(['Writing reaction force files for ',trial_folder])
+catch ME
+    disp('Force file generation aborted');
+    return;
+end
+
 %% ------------------------------------------------------------------------
 try
     % retrieve PedalClip forces from ForceReporter_forces.sto
     results_path = [pwd,'\..\Results\',trial_folder,'\SFK\'];    
-    force_reporter = [results_path, 'sfk_cyclingleg_x_',Sx,'_y_',Sy,'_ForceReporter_forces.sto'];
+    force_reporter = [results_path, 'sfk_cyclingleg_ForceReporter_forces.sto'];
     force_report = importdata(force_reporter, '\t');
     force_indices = zeros([1,3]);
     f = 1;
@@ -47,12 +51,33 @@ try
     % Robust quadratic regression over each window of A. 
     % This method is a more computationally expensive version of the method 'loess', 
     % but it is more robust to outliers.
-    % window size = 100 data points
-    smooth_Fx = smoothdata(force_report.data(:, force_indices(1)), 'rloess', 100);
-    smooth_Fy = smoothdata(force_report.data(:, force_indices(2)), 'rloess', 100);
+    ws = 50;
+    smooth_Fx = smoothdata(Fx, 'rloess', ws);
+    smooth_Fy = smoothdata(Fy, 'rloess', ws);
+    while max(abs(smooth_Fx)) > 1000
+        prev_max = max(abs(smooth_Fx));
+        disp(['max smooth Fx = ', num2str(prev_max) , ' N']);
+        smooth_Fx = smoothdata(smooth_Fx, 'rloess', ws);
+        new_max = max(abs(smooth_Fx));
+        if abs(prev_max - new_max)/prev_max < 1e-4
+            break;
+        end
+        ws = ws + 50;
+    end
+    ws = 50;
+    while max(abs(smooth_Fy)) > 1000
+        prev_max = max(abs(smooth_Fy));
+        disp(['max smooth Fy = ', num2str(prev_max) , ' N']);
+        smooth_Fy = smoothdata(smooth_Fy, 'rloess', ws);
+        new_max = max(abs(smooth_Fy));
+        if abs(prev_max - new_max)/prev_max < 1e-4
+            break;
+        end
+        ws = ws + 50;
+    end
     % currently zero-ing out all Fz at PedalClip since forces are
     % unreasonable, even after smoothing
-    smooth_Fz = 0 * force_report.data(:, force_indices(3));
+    smooth_Fz = 0 * Fz;
     % prepare data to be written to a .mot file
     smooth_data = [t, smooth_Fx, smooth_Fy, smooth_Fz];    
     
@@ -73,3 +98,23 @@ catch ME
     end
     rethrow(ME)
 end
+%% ------------------------------------------------------------------------
+% plotting of force profiles
+time = force_report.data(:,1);
+if ~exist('force_fig')
+    force_fig = figure; clf;
+end
+if ~ishandle(force_fig)
+    force_fig = figure; clf;
+else
+    clf(force_fig);
+end
+figure(force_fig);
+box on; grid on; hold on; 
+plot(time, smooth_Fx, 'r', 'DisplayName', 'Fx');
+plot(time, smooth_Fy, 'b', 'DisplayName', 'Fy');
+legend
+xlabel('Time [s]');
+ylabel('Pedal Force [N]');
+title(trial_folder,'Interpreter','none')
+hold off;
