@@ -196,6 +196,12 @@ for k = 1:length(theta)
     ylabel('Normalized Active Force: F^L(L/L_{opt}) \times F^V(v/v_{max})')
     title('Active Force for Vastus Intermedius','FontWeight','normal')
 end
+% show the downstroke of the leg between 45 and 135 deg
+fill([45 45 135 135],[gax4.YLim flip(gax3.YLim)],'c','DisplayName','Downstroke', ...
+    'FaceAlpha',0.1,'EdgeAlpha',0);
+% show the upstroke of the leg between 225 and 315 deg
+fill([225 225 315 315],[gax4.YLim flip(gax3.YLim)],'g','DisplayName','Upstroke', ...
+    'FaceAlpha',0.1,'EdgeAlpha',0);
 %% ------------------------------------------------------------------------
 % adjust figures for clarity
 % figure(fig3);
