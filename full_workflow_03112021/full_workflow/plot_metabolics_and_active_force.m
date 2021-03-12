@@ -10,6 +10,7 @@ end
 % Current 6 CMC trials as of 3/11/2021
 theta = [102 105 108];
 radius = [0.8196 0.8396];
+
 % optimal fiber lengths as define in the .osim for all muscles
 opt_fib_len = [0.12823851; 0.20083733; 0.16291391; 0.12617328; 0.09; 0.098];
 % maximum contraction velocities as defined in the .osim for muscles
@@ -19,12 +20,16 @@ fs = 16; % fontsize
 %% ------------------------------------------------------------------------
 k = 1;
 fig1 = figure(1); clf;
+fig1.Units = 'normalized';
+fig1.OuterPosition(1) = 0.05;
 fig1.Name = 'Active force w.r.t. Crank Angle';
 tile_1 = tiledlayout(2,3,'Padding','Compact');
 colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
                 0 0.7 0.8; 1 0.5 0; 0.5 0 1; 0 0.5 0])
             
 fig2 = figure(2); clf;
+fig2.Units = 'normalized';
+fig2.OuterPosition(1) = 0.05;
 fig2.Name = 'Active force for Vastus Intermedius w.r.t. Crank Angle';
 colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
                 0 0.7 0.8; 1 0.5 0; 0.5 0 1; 0 0.5 0])
@@ -219,28 +224,24 @@ fig2.OuterPosition(4) = 0.85;
 % fig4.OuterPosition(3) = 0.70;
 % fig4.OuterPosition(4) = 0.75;
 %% ------------------------------------------------------------------------
-disp('If CMC metabolics have been stored in the appropriate folders, continue onwards!')
-% fig5 = figure(5); clf;
-% fig5.Name = 'Mean Total Metabolics for CMC Trials';
-% tile_5 = tiledlayout(1,1,'Padding','compact');
-% colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
-%                 0 0.7 0.8; 1 0.5 0; 0.5 0 1; 0 0.5 0])
-mean_metabolics = zeros([length(theta), length(radius)]);
-
 fig6 = figure(6); clf;
+fig6.Units = 'normalized';
+fig6.OuterPosition(1) = 0.02;
 fig6.Name = 'Metabolics w.r.t. Crank Angle';
-tile_6 = tiledlayout(1,1,'Padding','compact');
+tile_6 = tiledlayout(2,3,'Padding','compact');
 colororder([0 0 0; 0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
                 0 0.7 0.8; 1 0.5 0; 0.5 0 1])
             
 fig7 = figure(7); clf;
+fig7.Units = 'normalized';
+fig7.OuterPosition(1) = 0.02;
 fig7.Name = 'Metabolics for Vastus w.r.t. Crank Angle';
 colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
                 0 0.7 0.8; 1 0.5 0; 0.5 0 1; 0 0.5 0])
 k = 1;
-
-for ri = 1%:length(radius)
-    for ti = 1%:length(theta)
+mean_metabolics_polar = zeros([length(theta), length(radius)]);
+for ri = 1:length(radius)
+    for ti = 1:length(theta)
 
         saddle_pos = ['S_{θ,r} = (',num2str(theta(ti)),'° ,',num2str(radius(ri)),'m)'];
         
@@ -250,7 +251,7 @@ for ri = 1%:length(radius)
         colheaders = metabolics_report.colheaders;
         % store for "parachute" plot
         P_mean = mean(metabolics(:,2));            
-        mean_metabolics(ti,ri) = P_mean;
+        mean_metabolics_polar(ti,ri) = P_mean;
         % indices for muscles of the leg (columns in [metabolics])
         meta_index = [2, 4, 5, 6, 7];
 
@@ -273,12 +274,12 @@ for ri = 1%:length(radius)
         % show the upstroke of the leg between 225 and 315 deg
         fill([225 225 315 315],[gax6.YLim flip(gax6.YLim)],'g','DisplayName','Upstroke', ...
             'FaceAlpha',0.1,'EdgeAlpha',0);
-        if k == 4
-            ylabel('Metabolic Energy Expenditure Rate [W]')
-            gax6.YLabel.Position(2) = 1.75;
-        end
         if k == 5
             xlabel('Crank Angle [deg]')
+        end
+        if k == 4
+            ylabel('Metabolic Energy Expenditure Rate [W]')
+            gax6.YLabel.Position(2) = gax6.YLim(2);
         end
 
         title(saddle_pos,'FontWeight','normal');
@@ -305,32 +306,68 @@ fill(gax7,[45 45 135 135],[gax7.YLim flip(gax7.YLim)],'c','DisplayName','Downstr
 fill(gax7,[225 225 315 315],[gax7.YLim flip(gax7.YLim)],'g','DisplayName','Upstroke', ...
     'FaceAlpha',0.1,'EdgeAlpha',0);
 %% ------------------------------------------------------------------------
-% figure(fig5); 
-% mean_metabolics(mean_metabolics <= 0) = NaN;
-% [Sx_mesh, Sy_mesh] = meshgrid(Sx, Sy);
-% parachute = surf(Sx_mesh,Sy_mesh,mean_metabolics','Marker','s',...
+fig5 = figure(5); clf;
+fig5.Units = 'normalized';
+fig5.OuterPosition(1) = 0.02;
+fig5.Name = 'Mean Total Metabolics for CMC Trials';
+% tile_5 = tiledlayout(1);
+colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
+                0 0.7 0.8; 1 0.5 0; 0.5 0 1; 0 0.5 0])
+mean_metabolics_polar(mean_metabolics_polar <= 0) = NaN;
+[t_mesh, r_mesh] = meshgrid(theta, radius);
+% plotting with respect to polar coordinates
+% nexttile(1);
+polar_parachute = surf(t_mesh,r_mesh,mean_metabolics_polar','Marker','s',...
+    'MarkerSize',18,'MarkerFaceColor','g');
+polar_parachute.FaceColor = 'interp';
+cb = colorbar('Location','eastoutside');
+cb.Label.String = 'P_{mean metabolic} [W]';
+cb.Label.FontSize = fs;
+zticks([])
+view(-45, 40)
+box on; grid on;
+colormap jet
+gax5 = gca;
+gax5.FontSize = fs;
+xlabel('Seat Post Angle θ [deg]');
+ylabel('Seat Post Height r [m]');
+title('Mean Total Metabolics P_{mean metabolic} vs Saddle Position S_{θ,r}')
+% -------------------------------------------------------------------------
+% % plotting with respect to cartesian coordinates
+% Sx = cosd(theta') * radius;
+% Sy = sind(theta') * radius;
+% [x_mesh, y_mesh, mean_metabolics_cart] = meshgrid(Sx, Sy, mean_metabolics_polar);
+% % mean_metabolics_cart = zeros([length(Sx), length(Sy)]);
+% nexttile(2); 
+% % parachute = surf(x_mesh, y_mesh, mean_metabolics_cart,'Marker','s',...
+% %     'MarkerSize',18,'MarkerFaceColor','g');
+% cart_parachute = mesh(Sx, Sy, mean_metabolics_polar, 'Marker','s',...
 %     'MarkerSize',18,'MarkerFaceColor','g');
-% parachute.FaceColor = 'interp';
+% cart_parachute.FaceColor = 'flat';
+% cart_parachute.EdgeColor = 'interp';
 % cb = colorbar('Location','eastoutside');
 % cb.Label.String = 'P_{mean metabolic} [W]';
 % cb.Label.FontSize = fs;
 % zticks([])
-% view(-45, 40)
+% % xticks(sort(Sx(:)));
+% % yticks(sort(Sy(:)));
+% view(-10, 45)
 % box on; grid on;
 % colormap jet
 % gax5 = gca;
 % gax5.FontSize = fs;
-% xlabel('Saddle X-Position [m]');
-% ylabel('Saddle Y-Position [m]');
+% xlabel('Saddle x-position [m]');
+% ylabel('Saddle y-position [m]');
 % title('Mean Total Metabolics P_{mean metabolic} vs Saddle Position S_{x,y}')
-% % adjust figures for clarity
-% % figure(fig4);
-% fig5.Units = 'normalized';
-% fig5.OuterPosition(2) = 0.25;
-% fig5.OuterPosition(3) = 0.5;
-% fig5.OuterPosition(4) = 0.7;
-% tile_5.InnerPosition = [0.05 0.15 0.7 0.85];
-% % cb.Position(1) = 0.9;
+% -------------------------------------------------------------------------
+% adjust figures for clarity
+fig5.Units = 'normalized';
+fig5.OuterPosition(2) = 0.25;
+fig5.OuterPosition(3) = 0.5;
+fig5.OuterPosition(4) = 0.75;
+
+% tile_5.InnerPosition = [0.05 0.15 0.8 0.75];
+% cb.Position(1) = 0.9;
 %% ------------------------------------------------------------------------
 % adjust figures for clarity
 % figure(fig5);

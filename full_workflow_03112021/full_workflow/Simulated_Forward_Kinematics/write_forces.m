@@ -101,15 +101,15 @@ end
 %% ------------------------------------------------------------------------
 % plotting of force profiles
 time = force_report.data(:,1);
-if ~exist('force_fig')
-    force_fig = figure; clf;
-end
-if ~ishandle(force_fig)
-    force_fig = figure; clf;
-else
-    clf(force_fig);
-end
-figure(force_fig);
+% if ~exist('force_fig')
+%     force_fig = figure; clf;
+% end
+% if ~ishandle(force_fig)
+%     force_fig = figure; clf;
+% else
+%     clf(force_fig);
+% end
+figure;
 box on; grid on; hold on; 
 plot(time, smooth_Fx, 'r', 'DisplayName', 'Fx');
 plot(time, smooth_Fy, 'b', 'DisplayName', 'Fy');
