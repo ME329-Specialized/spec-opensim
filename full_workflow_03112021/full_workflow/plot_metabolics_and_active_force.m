@@ -71,7 +71,7 @@ for ri = 1:length(radius)
         end
         if k == 4
             ylabel('Normalized Active Force: F^L(L/L_{opt}) \times F^V(v/v_{max})')
-            gax1.YLabel.Position(2) = gax1.YLim(2);
+            gax1.YLabel.Position(2) = gax1.YLim(2)*1.3;
         end
         title(saddle_pos,'FontWeight','normal')
         xlim([0 360] + crank_angles(1))
@@ -131,98 +131,102 @@ fig2.OuterPosition(2) = 0.1;
 fig2.OuterPosition(3) = 0.90;
 fig2.OuterPosition(4) = 0.85;
 %% ------------------------------------------------------------------------
-% % plotting figure 3 for polar coordinate saddle position
-% fig3 = figure(3); clf;
-% fig3.Name = 'Active force w.r.t. Crank Angle with Polar Saddle Pos';
-% tile_3 = tiledlayout(1,3,'Padding','compact');
-% colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
-%                 0 0.7 0.8; 1 0.5 0; 0.5 0 1; 0 0.5 0])
-% fig4 = figure(4); clf;
-% fig4.Name = 'Active force for Vastus Intermedius w.r.t. Crank Angle with Polar Saddle Pos';
-% colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
-%                 0 0.7 0.8; 1 0.5 0; 0.5 0 1; 0 0.5 0])  
-%             
-% for k = 1:length(theta)
-%     u = theta(k);
-%     [MA_norm_fib_lens, MA_fib_vels, crank_angles] = get_muscle_states_polar(u);
-%     norm_fib_lens = MA_norm_fib_lens.data;
-%     fib_vels = MA_fib_vels.data;
-%     colheaders = MA_norm_fib_lens.colheaders;
-%     time = norm_fib_lens(:,1); 
-%     % smooth the data with movmean
-%     window_size = 500;
-%     fib_vels = smoothdata(fib_vels,'movmean',window_size);
-%             
-%     musc_index = [2,3,4,5];
-%     % figure 3 plotting -------------------------------------------
-%     figure(fig3);
-%     nexttile(k);
-%     hold on; box on; grid on;
-%     gax3 = gca;
-%     gax3.FontSize = fs;
-%     for n = musc_index
-%         FL = Thelen2003_Active_Force_Length(norm_fib_lens(:,n));
-%         v_max = 10*opt_fib_len(n-1);
-%         FV = Thelen2003_Force_Velocity(fib_vels(:,n) / v_max);
-%         plot(crank_angles, FL.*FV,'DisplayName', colheaders{n});
-%     end  
-%     if k == 2
-%         xlabel('Crank Angle [deg]')
-%     end
-%     if k == 1
-%         ylabel('Normalized Active Force: F^L(L/L_{opt}) \times F^V(v/v_{max})')
-%     end
-%     trial_name = ['\theta = ',num2str(u),'°'];
-%     title(trial_name,'FontWeight','normal')
-%     xlim([0 360] + crank_angles(1))
-%     ylim([0.4 1.6])
-%     % show the downstroke of the leg between 45 and 135 deg
-%     fill([45 45 135 135],[gax3.YLim flip(gax3.YLim)],'c','DisplayName','Downstroke', ...
-%         'FaceAlpha',0.1,'EdgeAlpha',0);
-%     % show the upstroke of the leg between 225 and 315 deg
-%     fill([225 225 315 315],[gax3.YLim flip(gax3.YLim)],'g','DisplayName','Upstroke', ...
-%         'FaceAlpha',0.1,'EdgeAlpha',0);
-%     
-%     % figure 4 plotting -------------------------------------------
-%     figure(fig4);
-%     hold on; box on; grid on;
-%     gax4 = gca;
-%     gax4.FontSize = fs;
-%     FL_vast = Thelen2003_Active_Force_Length(norm_fib_lens(:,5));
-%     v_max_vast = 10*opt_fib_len(4);
-%     FV_vast = Thelen2003_Force_Velocity(fib_vels(:,5) / v_max_vast);
-%     plot(crank_angles,FL_vast.*FV_vast,'DisplayName',trial_name);
-%     xlim(crank_angles(1) + [0, 360]);
-%     ylim([0.4 1.6])
-%     legend('Location','best');
-%     xlabel('Crank Angle [deg]');
-%     ylabel('Normalized Active Force: F^L(L/L_{opt}) \times F^V(v/v_{max})')
-%     title('Active Force for Vastus Intermedius','FontWeight','normal')
-% end
-% % show the downstroke of the leg between 45 and 135 deg
-% fill([45 45 135 135],[gax4.YLim flip(gax3.YLim)],'c','DisplayName','Downstroke', ...
-%     'FaceAlpha',0.1,'EdgeAlpha',0);
-% % show the upstroke of the leg between 225 and 315 deg
-% fill([225 225 315 315],[gax4.YLim flip(gax3.YLim)],'g','DisplayName','Upstroke', ...
-%     'FaceAlpha',0.1,'EdgeAlpha',0);
-% %% ------------------------------------------------------------------------
-% % adjust figures for clarity
-% % figure(fig3);
-% fig3.Units = 'normalized';
-% % fig1.OuterPosition = [0.000    0.1    0.90    0.85];
-% fig3.OuterPosition(2) = 0.20;
-% fig3.OuterPosition(3) = 0.90;
-% fig3.OuterPosition(4) = 0.70;
-% tile_3.InnerPosition = [0.07    0.15    0.750    0.75];
-% lgd_3 = legend(gax3,'Interpreter','none','FontSize',14);
-% lgd_3.Position = [1 0.325 0.15 0.4];
-% 
-% % figure(fig4);
-% fig4.Units = 'normalized';
-% % fig2.OuterPosition = [0.000    0.1    0.90    0.85];
-% fig4.OuterPosition(2) = 0.1;
-% fig4.OuterPosition(3) = 0.70;
-% fig4.OuterPosition(4) = 0.75;
+% plotting figure 3 for polar coordinate saddle position
+fig3 = figure(3); clf;
+fig3.Name = 'Active force for θ = 105°, r = 0.8196 m';
+
+colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
+                0 0.7 0.8; 1 0.5 0; 0.5 0 1; 0 0.5 0])
+            
+[MA_norm_fib_lens, MA_fib_vels, crank_angles] = get_muscle_states(theta(2),radius(1));
+norm_fib_lens = MA_norm_fib_lens.data;
+fib_vels = MA_fib_vels.data;
+colheaders = MA_norm_fib_lens.colheaders;
+time = norm_fib_lens(:,1); 
+% smooth the data with movmean
+window_size = 500;
+fib_vels = smoothdata(fib_vels,'movmean',window_size);
+
+musc_index = [2,3,4,5];
+% figure 3 plotting -------------------------------------------
+% figure(fig3);
+% nexttile(k);
+hold on; box on; grid on;
+gax3 = gca;
+gax3.FontSize = fs;
+for n = musc_index
+    FL = Thelen2003_Active_Force_Length(norm_fib_lens(:,n));
+    v_max = 10*opt_fib_len(n-1);
+    FV = Thelen2003_Force_Velocity(fib_vels(:,n) / v_max);
+    plot(crank_angles, FL.*FV,'DisplayName', colheaders{n});
+end  
+
+xlabel('Crank Angle [deg]')
+ylabel('Normalized Active Force: F^L(L/L_{opt}) \times F^V(v/v_{max})')
+
+trial_name = ['S_{θ,r}=(',num2str(theta(2)),'°, ',num2str(radius(1)),'m)'];
+title(trial_name,'FontWeight','normal')
+xlim([0 360] + crank_angles(1))
+ylim([0.4 1.6])
+% show the downstroke of the leg between 45 and 135 deg
+fill([45 45 135 135],[gax3.YLim flip(gax3.YLim)],'c','DisplayName','Downstroke', ...
+    'FaceAlpha',0.1,'EdgeAlpha',0);
+% show the upstroke of the leg between 225 and 315 deg
+fill([225 225 315 315],[gax3.YLim flip(gax3.YLim)],'g','DisplayName','Upstroke', ...
+    'FaceAlpha',0.1,'EdgeAlpha',0);
+%% ------------------------------------------------------------------------
+% adjust figures for clarity
+% figure(fig3);
+fig3.Units = 'normalized';
+% fig1.OuterPosition = [0.000    0.1    0.90    0.85];
+fig3.OuterPosition(2) = 0.20;
+fig3.OuterPosition(3) = 0.60;
+fig3.OuterPosition(4) = 0.70;
+tile_3.InnerPosition = [0.07    0.15    0.750    0.75];
+lgd_3 = legend(gax3,'Location','northwest','Interpreter','none','FontSize',14);
+%% ------------------------------------------------------------------------
+fig4 = figure(4); clf;
+fig4.Name = 'Active force for Vastus Intermedius w.r.t. Crank Angle with Polar Saddle Pos';
+colororder([0 0 0; 0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
+                0 0.7 0.8; 1 0.5 0; 0.5 0 1])
+% figure 4 plotting -------------------------------------------
+hold on; box on; grid on;
+gax4 = gca;
+gax4.FontSize = fs;   
+
+saddle_pos = ['S_{θ,r} = (',num2str(theta(2)),'° ,',num2str(radius(1)),'m)'];
+        
+% metabolics from the metabolics reporter and crank angle
+[metabolics_report, crank_angles] = get_metabolics(theta(2),radius(1));
+metabolics = metabolics_report.data;
+colheaders = metabolics_report.colheaders;
+
+% indices for muscles of the leg (columns in [metabolics])
+meta_index = [2, 4, 5, 6, 7];
+        
+for mi = meta_index
+    smooth_metabolics = smoothdata(metabolics(:,mi),'movmean',50);
+    plot(crank_angles,smooth_metabolics,'DisplayName',colheaders{mi});
+end
+
+smooth_total = smoothdata(metabolics(:,2),'movmean',30);
+ylim([0 max(smooth_total)])
+% show the downstroke of the leg between 45 and 135 deg
+fill([45 45 135 135],[gax6.YLim flip(gax6.YLim)],'c','DisplayName','Downstroke', ...
+    'FaceAlpha',0.1,'EdgeAlpha',0);
+% show the upstroke of the leg between 225 and 315 deg
+fill([225 225 315 315],[gax6.YLim flip(gax6.YLim)],'g','DisplayName','Upstroke', ...
+    'FaceAlpha',0.1,'EdgeAlpha',0);
+
+xlabel('Crank Angle [deg]')
+ylabel('Metabolic Energy Expenditure Rate [W]')
+title(saddle_pos,'FontWeight','normal');
+% adjust figures for clarity
+fig4.Units = 'normalized';
+fig4.OuterPosition(2) = 0.20;
+fig4.OuterPosition(3) = 0.60;
+fig4.OuterPosition(4) = 0.70;
+lgd_4 = legend(gax4,'Location','northeast','Interpreter','none','FontSize',14);
 %% ------------------------------------------------------------------------
 fig6 = figure(6); clf;
 fig6.Units = 'normalized';
