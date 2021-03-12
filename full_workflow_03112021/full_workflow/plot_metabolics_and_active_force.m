@@ -71,7 +71,7 @@ for ri = 1:length(radius)
         end
         if k == 4
             ylabel('Normalized Active Force: F^L(L/L_{opt}) \times F^V(v/v_{max})')
-            gax1.YLabel.Position(2) = 1.75;
+            gax1.YLabel.Position(2) = gax1.YLim(2);
         end
         title(saddle_pos,'FontWeight','normal')
         xlim([0 360] + crank_angles(1))
@@ -314,23 +314,37 @@ fig5.Name = 'Mean Total Metabolics for CMC Trials';
 colororder([0.8 0 0; 0 0 0.8; 0 0.8 0; 1 0 0.8; 
                 0 0.7 0.8; 1 0.5 0; 0.5 0 1; 0 0.5 0])
 mean_metabolics_polar(mean_metabolics_polar <= 0) = NaN;
-[t_mesh, r_mesh] = meshgrid(theta, radius);
+% [t_mesh, r_mesh] = meshgrid(theta, radius);
+
 % plotting with respect to polar coordinates
-% nexttile(1);
-polar_parachute = surf(t_mesh,r_mesh,mean_metabolics_polar','Marker','s',...
-    'MarkerSize',18,'MarkerFaceColor','g');
-polar_parachute.FaceColor = 'interp';
+% polar_parachute = surf(t_mesh,r_mesh,mean_metabolics_polar','Marker','s',...
+%     'MarkerSize',18,'MarkerFaceColor','g');
+% polar_parachute.FaceColor = 'interp';
+% cb = colorbar('Location','eastoutside');
+% cb.Label.String = 'P_{mean metabolic} [W]';
+% cb.Label.FontSize = fs;
+
+% plotting 3D bar graph instead of pyramid shape
+mars = bar3(mean_metabolics_polar);
+for k = 1:length(mars(:))
+    zdata = mars(k).ZData;
+    mars(k).CData = zdata;
+    mars(k).FaceColor = 'interp';
+end
 cb = colorbar('Location','eastoutside');
 cb.Label.String = 'P_{mean metabolic} [W]';
 cb.Label.FontSize = fs;
-zticks([])
-view(-45, 40)
+% zticks([])
+yticklabels(theta)
+xticklabels(radius)
+zlabel('P_{mean metabolic} [W]')
+view(-120, 10)
 box on; grid on;
 colormap jet
 gax5 = gca;
 gax5.FontSize = fs;
-xlabel('Seat Post Angle θ [deg]');
-ylabel('Seat Post Height r [m]');
+ylabel('Seat Post Angle θ [deg]');
+xlabel('Seat Post Height r [m]');
 title('Mean Total Metabolics P_{mean metabolic} vs Saddle Position S_{θ,r}')
 % -------------------------------------------------------------------------
 % % plotting with respect to cartesian coordinates
@@ -363,7 +377,7 @@ title('Mean Total Metabolics P_{mean metabolic} vs Saddle Position S_{θ,r}')
 % adjust figures for clarity
 fig5.Units = 'normalized';
 fig5.OuterPosition(2) = 0.25;
-fig5.OuterPosition(3) = 0.5;
+fig5.OuterPosition(3) = 0.55;
 fig5.OuterPosition(4) = 0.75;
 
 % tile_5.InnerPosition = [0.05 0.15 0.8 0.75];
