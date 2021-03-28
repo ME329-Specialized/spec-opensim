@@ -3,7 +3,7 @@
 if startsWith(pwd,'C:\Users\david')
     cd( 'C:\Users\david\GitHub\spec-opensim\full_workflow_03112021\full_workflow\Simulated_Forward_Kinematics')
 end
-% choose which trial folder to use based on Saddle Position Sx and Sy
+% choose which trial folder to use based on Saddle Position R and θ
 prompt = {'\fontsize{10} Enter angle θ in degrees:','\fontsize{10} Enter radius r in meters:'};
 dlgtitle = 'Saddle position?';
 dims = [1 60];
@@ -15,6 +15,7 @@ try
     theta = polar_input{1};
     radius = polar_input{2};
     trial_folder = ['Saddle_t_',theta,'_r_',radius];
+    saddle_pos = ['S_{R,θ} = (',num2str(radius),'m, (',num2str(theta),'°)'];
     disp(['Writing reaction force files for ',trial_folder])
 catch ME
     disp('Force file generation aborted');

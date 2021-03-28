@@ -6,7 +6,7 @@
 
 % to plot the standard force fraction curves
 
-norm_fib_len = linspace(0, 1.75, 100);
+norm_fib_len = linspace(0, 1.67, 100);
 norm_fib_vel = linspace(-1, 1, 100);
 % tendon slack length for vastus intermedius
 ten_slack_len = 0.13678598; 
@@ -20,30 +20,41 @@ passive_FM = Thelen2003_Passive_Force_Length(norm_fib_len);
 velocity_FM = Thelen2003_Force_Velocity(norm_fib_vel);
 tendon_FT = Thelen2003_Tendon_Force(norm_ten_len);
 
-figure(3); clf;
-subplot(1, 3, 1); hold on; box on;
-title('Fiber Force-Length')
+figure; clf;
+
+test_tiles = tiledlayout(1,2);
+% subplot(1, 3, 1); hold on; box on;
+nexttile(1); hold on; box on; grid on;
+set(groot,'DefaultLineLineWidth', 2);
+% title('Active Force-Length Curve for Muscle Fibers','FontSize',16,'FontWeight','normal')
 plot(norm_fib_len, active_FM, 'b', 'DisplayName', 'Active')
 plot(norm_fib_len, passive_FM, 'g', 'DisplayName', 'Passive')
 plot(norm_fib_len, active_FM + passive_FM, 'c', 'DisplayName', 'Total')
-legend('Location', 'northwest','AutoUpdate','off')
+legend('Location', 'northwest','AutoUpdate','off','FontSize',14)
 plot([1 1],[0 1], '--', 'Color', [0.8 0.8 0.8])
 plot([0 1],[1 1], '--', 'Color', [0.8 0.8 0.8])
-xlabel('Normalized Optimal Fiber Length')
-ylabel('Normalized Muscle Force')
+xlabel('Normalized Fiber Length','FontSize',16)
+ylabel('Normalized Muscle Force','FontSize',16)
+gax = gca;
+gax.FontSize = 18;
+% gax.Title.Position(2) = 2.6;
 
-subplot(1, 3, 2); hold on; box on;
-title('Fiber Force-Velocity')
+% subplot(1, 3, 2); hold on; box on;
+nexttile(2); hold on; box on; grid on;
+set(groot,'DefaultLineLineWidth', 2);
+% title('Active Force-Velocity Curve for Muscle Fibers','FontSize',16,'FontWeight','normal')
 plot(norm_fib_vel, velocity_FM, 'b')
 plot([0 0],[0 1], '--', 'Color', [0.8 0.8 0.8])
 plot([-1 0],[1 1], '--', 'Color', [0.8 0.8 0.8])
 xticks([-1 -0.5 0 0.5 1])
 xticklabels({'-1','\leftarrowConcentric', 'Iso.', 'Eccentric\rightarrow ', '1'})
-xlabel('Normalized Fiber Velocity')
-ylabel('Normalized Muscle Force')
-
-subplot(1, 3, 3); hold on; box on;
-title('Tendon Elasticity')
-plot(norm_ten_len, tendon_FT, 'b')
-plot([1 1],[0 1], '--', 'Color', [0.8 0.8 0.8])
-plot([0 1],[1 1], '--', 'Color', [0.8 0.8 0.8])
+xlabel('Normalized Fiber Velocity','FontSize',16)
+ylabel('Normalized Muscle Force','FontSize',16)
+gax = gca;
+gax.FontSize = 18;
+% gax.Title.Position(2) = 1.87;
+% subplot(1, 3, 3); hold on; box on;
+% title('Tendon Elasticity')
+% plot(norm_ten_len, tendon_FT, 'b')
+% plot([1 1],[0 1], '--', 'Color', [0.8 0.8 0.8])
+% plot([0 1],[1 1], '--', 'Color', [0.8 0.8 0.8])
