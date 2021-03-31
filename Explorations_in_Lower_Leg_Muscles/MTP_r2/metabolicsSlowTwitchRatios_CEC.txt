@@ -1,4 +1,0 @@
-bifemlh_r 0.5425
-bifemsh_r 0.529
-glut_max2_r 0.55
-vas_int_r 0.543

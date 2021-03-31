@@ -20,6 +20,7 @@
 				<!--Name of the generalized coordinate to which the actuator applies.-->
 				<coordinate>crank_angle</coordinate>
 				<!--The maximum generalized force produced by this actuator.-->
+				<!--CHANGE THIS VALUE FOR DEBUGGING CMC-->
 				<optimal_force>175</optimal_force>
 			</CoordinateActuator>
 

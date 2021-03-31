@@ -1,7 +1,0 @@
-bifemlh_r 0.5425
-bifemsh_r 0.529
-glut_max2_r 0.55
-vas_int_r 0.543
-med_gas_r 0.54
-soleus_r 0.80
-tib_ant_r 0.70
