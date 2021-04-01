@@ -3,6 +3,9 @@ Date updated: 3/28/2021
 What is the "Full_Workflow" folder?
 This the folder the Stanford student team stored all of the different OpenSim models and results for the simulations performed at the end of the winter quarter in 2021.
 
+For a visual reference, here is the summary workflow diagram from the student team.
+![Summary Workflow Diagram](../Documents/Summary_Flowchart.png)
+
 # Order of Operations (as performed by the student team)
 ## Setup
 1. Select a seat tube height (radius R) and seat tube angle (angle θ).

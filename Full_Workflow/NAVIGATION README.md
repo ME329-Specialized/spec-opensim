@@ -8,6 +8,7 @@ This the folder the Stanford student team stored all of the different OpenSim mo
 	Contains all models used for the SFK step of the workflow. These models have a prescribed function at the crank angle that drives the pedaling motion at a constant cadence of 80 rpm.
 
 	Additionally, there are MATLAB scripts here for processing the reaction forces due to the PedalClip constraint and readying the data to be used for the CMC simulations.
+
 	  * write_forces.m is the main script that needs to be run for post-processing of the PedalClip forces
 	  * write_mot4forces.m writes a motion file (tab delimited) which is interpretable for OpenSim
 	  * write_xml4forces.m writes a xml file which is needed in the setup files for the CMC setup files
